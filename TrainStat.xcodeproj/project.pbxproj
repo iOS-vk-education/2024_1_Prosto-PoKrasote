@@ -13,6 +13,8 @@
 		DD369BD62CCD35510022331E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DD369BD52CCD35510022331E /* Base */; };
 		DD369BD82CCD35520022331E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD369BD72CCD35520022331E /* Assets.xcassets */; };
 		DD369BDB2CCD35520022331E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DD369BDA2CCD35520022331E /* Base */; };
+		DD6E2F3B2CDA1CE2002C4FEB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6E2F3A2CDA1CE2002C4FEB /* Extensions.swift */; };
+		DD6E2F3D2CDA1D09002C4FEB /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6E2F3C2CDA1D09002C4FEB /* Variables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		DD369BD72CCD35520022331E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD369BDA2CCD35520022331E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD369BDC2CCD35520022331E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD6E2F3A2CDA1CE2002C4FEB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		DD6E2F3C2CDA1D09002C4FEB /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		DD369BCD2CCD35510022331E /* TrainStat */ = {
 			isa = PBXGroup;
 			children = (
+				DD6E2F392CDA1CD4002C4FEB /* Global */,
 				DD369BCE2CCD35510022331E /* AppDelegate.swift */,
 				DD369BD02CCD35510022331E /* SceneDelegate.swift */,
 				DD369BD22CCD35510022331E /* ViewController.swift */,
@@ -65,6 +70,15 @@
 				DD369BDC2CCD35520022331E /* Info.plist */,
 			);
 			path = TrainStat;
+			sourceTree = "<group>";
+		};
+		DD6E2F392CDA1CD4002C4FEB /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				DD6E2F3A2CDA1CE2002C4FEB /* Extensions.swift */,
+				DD6E2F3C2CDA1D09002C4FEB /* Variables.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +155,8 @@
 				DD369BD32CCD35510022331E /* ViewController.swift in Sources */,
 				DD369BCF2CCD35510022331E /* AppDelegate.swift in Sources */,
 				DD369BD12CCD35510022331E /* SceneDelegate.swift in Sources */,
+				DD6E2F3B2CDA1CE2002C4FEB /* Extensions.swift in Sources */,
+				DD6E2F3D2CDA1D09002C4FEB /* Variables.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
