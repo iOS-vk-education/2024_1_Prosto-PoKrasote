@@ -357,6 +357,7 @@
 				DD3B7A822CE39F1100B3DE74 /* MainTabView.swift in Sources */,
 				DD3B7AA42CE3A71D00B3DE74 /* StatisticsRouterView.swift in Sources */,
 				DD3B7A882CE39FD800B3DE74 /* CustomTabView.swift in Sources */,
+				DD3B7A7C2CE273CD00B3DE74 /* Variables.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
