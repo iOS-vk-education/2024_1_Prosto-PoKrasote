@@ -28,6 +28,25 @@
 		DD3B7AA02CE3A6B400B3DE74 /* AccountRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A9F2CE3A6B400B3DE74 /* AccountRouterView.swift */; };
 		DD3B7AA22CE3A71100B3DE74 /* StatisticsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7AA12CE3A71100B3DE74 /* StatisticsRouter.swift */; };
 		DD3B7AA42CE3A71D00B3DE74 /* StatisticsRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7AA32CE3A71D00B3DE74 /* StatisticsRouterView.swift */; };
+		DD3F24EA2CEE7C2B009E90D1 /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24E92CEE7C2B009E90D1 /* ExerciseModel.swift */; };
+		DD3F24EE2CEE7C6F009E90D1 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24ED2CEE7C6F009E90D1 /* WorkoutModel.swift */; };
+		DD3F24F02CEE7C8E009E90D1 /* SetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24EF2CEE7C8E009E90D1 /* SetModel.swift */; };
+		DD3F24F22CEE7CB2009E90D1 /* SpecificExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F12CEE7CB2009E90D1 /* SpecificExerciseModel.swift */; };
+		DD3F24F52CEE7D24009E90D1 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F32CEE7D24009E90D1 /* CoreDataModel.xcdatamodeld */; };
+		DD3F24FD2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24FB2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataClass.swift */; };
+		DD3F24FE2CEE7E5F009E90D1 /* ExerciseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F82CEE7E5F009E90D1 /* ExerciseEntity+CoreDataProperties.swift */; };
+		DD3F24FF2CEE7E5F009E90D1 /* SetEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24FA2CEE7E5F009E90D1 /* SetEntity+CoreDataProperties.swift */; };
+		DD3F25002CEE7E5F009E90D1 /* WorkoutEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24FC2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataProperties.swift */; };
+		DD3F25012CEE7E5F009E90D1 /* ExerciseEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F72CEE7E5F009E90D1 /* ExerciseEntity+CoreDataClass.swift */; };
+		DD3F25022CEE7E5F009E90D1 /* SetEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F92CEE7E5F009E90D1 /* SetEntity+CoreDataClass.swift */; };
+		DD3F25042CEE7E89009E90D1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25032CEE7E89009E90D1 /* CoreDataManager.swift */; };
+		DD3F25062CEE7F2F009E90D1 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25052CEE7F2F009E90D1 /* WorkoutViewModel.swift */; };
+		DD3F250A2CEE7F99009E90D1 /* MuscleGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25092CEE7F99009E90D1 /* MuscleGroupsView.swift */; };
+		DD3F250D2CEE7FC6009E90D1 /* AddWorkoutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F250C2CEE7FC6009E90D1 /* AddWorkoutRouter.swift */; };
+		DD3F250F2CEE7FD9009E90D1 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F250E2CEE7FD9009E90D1 /* ExerciseListView.swift */; };
+		DD3F25112CEE7FEA009E90D1 /* AddWorkoutRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25102CEE7FEA009E90D1 /* AddWorkoutRouterView.swift */; };
+		DD3F25182CEE802F009E90D1 /* CustomRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25152CEE802F009E90D1 /* CustomRoundedRectangle.swift */; };
+		DD3F25192CEE802F009E90D1 /* StandartHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25162CEE802F009E90D1 /* StandartHeaderText.swift */; };
 		F9CCEE02D9664FE56021E4CF /* Pods_TrainStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DD832913D016BC70B07CC5 /* Pods_TrainStat.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +77,25 @@
 		DD3B7A9F2CE3A6B400B3DE74 /* AccountRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRouterView.swift; sourceTree = "<group>"; };
 		DD3B7AA12CE3A71100B3DE74 /* StatisticsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRouter.swift; sourceTree = "<group>"; };
 		DD3B7AA32CE3A71D00B3DE74 /* StatisticsRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRouterView.swift; sourceTree = "<group>"; };
+		DD3F24E92CEE7C2B009E90D1 /* ExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseModel.swift; sourceTree = "<group>"; };
+		DD3F24ED2CEE7C6F009E90D1 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		DD3F24EF2CEE7C8E009E90D1 /* SetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetModel.swift; sourceTree = "<group>"; };
+		DD3F24F12CEE7CB2009E90D1 /* SpecificExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificExerciseModel.swift; sourceTree = "<group>"; };
+		DD3F24F42CEE7D24009E90D1 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		DD3F24F72CEE7E5F009E90D1 /* ExerciseEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ExerciseEntity+CoreDataClass.swift"; path = "../ExerciseEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DD3F24F82CEE7E5F009E90D1 /* ExerciseEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ExerciseEntity+CoreDataProperties.swift"; path = "../ExerciseEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DD3F24F92CEE7E5F009E90D1 /* SetEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SetEntity+CoreDataClass.swift"; path = "../SetEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DD3F24FA2CEE7E5F009E90D1 /* SetEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SetEntity+CoreDataProperties.swift"; path = "../SetEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DD3F24FB2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WorkoutEntity+CoreDataClass.swift"; path = "../WorkoutEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DD3F24FC2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WorkoutEntity+CoreDataProperties.swift"; path = "../WorkoutEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DD3F25032CEE7E89009E90D1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		DD3F25052CEE7F2F009E90D1 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
+		DD3F25092CEE7F99009E90D1 /* MuscleGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroupsView.swift; sourceTree = "<group>"; };
+		DD3F250C2CEE7FC6009E90D1 /* AddWorkoutRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutRouter.swift; sourceTree = "<group>"; };
+		DD3F250E2CEE7FD9009E90D1 /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
+		DD3F25102CEE7FEA009E90D1 /* AddWorkoutRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutRouterView.swift; sourceTree = "<group>"; };
+		DD3F25152CEE802F009E90D1 /* CustomRoundedRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRoundedRectangle.swift; sourceTree = "<group>"; };
+		DD3F25162CEE802F009E90D1 /* StandartHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartHeaderText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +140,7 @@
 		DD369BCD2CCD35510022331E /* TrainStat */ = {
 			isa = PBXGroup;
 			children = (
+				DD3F24EB2CEE7C38009E90D1 /* Data */,
 				DD3B7A7F2CE39EE900B3DE74 /* View */,
 				DD3B7A7A2CE273B200B3DE74 /* Global */,
 				DD369BCE2CCD35510022331E /* AppDelegate.swift */,
@@ -117,6 +156,7 @@
 		DD3B7A7A2CE273B200B3DE74 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				DD3F25172CEE802F009E90D1 /* UIElements */,
 				DD3B7A7B2CE273CD00B3DE74 /* Variables.swift */,
 				DD3B7A7D2CE273DD00B3DE74 /* Extensions.swift */,
 			);
@@ -157,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				DD3B7A8B2CE3A02F00B3DE74 /* WorkoutView.swift */,
+				DD3F25052CEE7F2F009E90D1 /* WorkoutViewModel.swift */,
+				DD3F250B2CEE7FAE009E90D1 /* AddExercise */,
 				DD3B7A972CE3A5E300B3DE74 /* WorkoutRouter */,
 			);
 			path = WorkoutView;
@@ -214,6 +256,61 @@
 				DD3B7A9F2CE3A6B400B3DE74 /* AccountRouterView.swift */,
 			);
 			path = AccountRouter;
+			sourceTree = "<group>";
+		};
+		DD3F24EB2CEE7C38009E90D1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F24EC2CEE7C45009E90D1 /* Models */,
+				DD3F24F62CEE7E56009E90D1 /* CoreData */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		DD3F24EC2CEE7C45009E90D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F24E92CEE7C2B009E90D1 /* ExerciseModel.swift */,
+				DD3F24ED2CEE7C6F009E90D1 /* WorkoutModel.swift */,
+				DD3F24EF2CEE7C8E009E90D1 /* SetModel.swift */,
+				DD3F24F12CEE7CB2009E90D1 /* SpecificExerciseModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DD3F24F62CEE7E56009E90D1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F24F72CEE7E5F009E90D1 /* ExerciseEntity+CoreDataClass.swift */,
+				DD3F24F82CEE7E5F009E90D1 /* ExerciseEntity+CoreDataProperties.swift */,
+				DD3F24F92CEE7E5F009E90D1 /* SetEntity+CoreDataClass.swift */,
+				DD3F24FA2CEE7E5F009E90D1 /* SetEntity+CoreDataProperties.swift */,
+				DD3F24FB2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataClass.swift */,
+				DD3F24FC2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataProperties.swift */,
+				DD3F24F32CEE7D24009E90D1 /* CoreDataModel.xcdatamodeld */,
+				DD3F25032CEE7E89009E90D1 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		DD3F250B2CEE7FAE009E90D1 /* AddExercise */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F25092CEE7F99009E90D1 /* MuscleGroupsView.swift */,
+				DD3F250C2CEE7FC6009E90D1 /* AddWorkoutRouter.swift */,
+				DD3F250E2CEE7FD9009E90D1 /* ExerciseListView.swift */,
+				DD3F25102CEE7FEA009E90D1 /* AddWorkoutRouterView.swift */,
+			);
+			path = AddExercise;
+			sourceTree = "<group>";
+		};
+		DD3F25172CEE802F009E90D1 /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F25152CEE802F009E90D1 /* CustomRoundedRectangle.swift */,
+				DD3F25162CEE802F009E90D1 /* StandartHeaderText.swift */,
+			);
+			path = UIElements;
 			sourceTree = "<group>";
 		};
 		E47B3E0E1CA7535879C6B061 /* Frameworks */ = {
@@ -342,20 +439,39 @@
 				DD3B7A922CE3A40C00B3DE74 /* HomeRouter.swift in Sources */,
 				DD3B7A9A2CE3A64300B3DE74 /* WorkoutRouter.swift in Sources */,
 				DD3B7AA02CE3A6B400B3DE74 /* AccountRouterView.swift in Sources */,
+				DD3F24F52CEE7D24009E90D1 /* CoreDataModel.xcdatamodeld in Sources */,
+				DD3F24EA2CEE7C2B009E90D1 /* ExerciseModel.swift in Sources */,
+				DD3F24F02CEE7C8E009E90D1 /* SetModel.swift in Sources */,
+				DD3F250A2CEE7F99009E90D1 /* MuscleGroupsView.swift in Sources */,
 				DD369BD32CCD35510022331E /* ViewController.swift in Sources */,
 				DD369BCF2CCD35510022331E /* AppDelegate.swift in Sources */,
 				DD3B7A8E2CE3A03A00B3DE74 /* HomeView.swift in Sources */,
 				DD369BD12CCD35510022331E /* SceneDelegate.swift in Sources */,
 				DD3B7A8C2CE3A02F00B3DE74 /* WorkoutView.swift in Sources */,
+				DD3F24FD2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataClass.swift in Sources */,
+				DD3F25182CEE802F009E90D1 /* CustomRoundedRectangle.swift in Sources */,
+				DD3F25192CEE802F009E90D1 /* StandartHeaderText.swift in Sources */,
+				DD3F24FE2CEE7E5F009E90D1 /* ExerciseEntity+CoreDataProperties.swift in Sources */,
+				DD3F25042CEE7E89009E90D1 /* CoreDataManager.swift in Sources */,
+				DD3F24FF2CEE7E5F009E90D1 /* SetEntity+CoreDataProperties.swift in Sources */,
+				DD3F25002CEE7E5F009E90D1 /* WorkoutEntity+CoreDataProperties.swift in Sources */,
+				DD3F25012CEE7E5F009E90D1 /* ExerciseEntity+CoreDataClass.swift in Sources */,
+				DD3F25022CEE7E5F009E90D1 /* SetEntity+CoreDataClass.swift in Sources */,
 				DD3B7A8A2CE3A01900B3DE74 /* AccountView.swift in Sources */,
 				DD3B7A942CE3A47100B3DE74 /* HomeRouterView.swift in Sources */,
+				DD3F250D2CEE7FC6009E90D1 /* AddWorkoutRouter.swift in Sources */,
 				DD3B7A7C2CE273CD00B3DE74 /* Variables.swift in Sources */,
 				DD3B7A9C2CE3A66A00B3DE74 /* WorkoutRouterView.swift in Sources */,
 				DD3B7AA22CE3A71100B3DE74 /* StatisticsRouter.swift in Sources */,
 				DD3B7A9E2CE3A69C00B3DE74 /* AccountRouter.swift in Sources */,
 				DD3B7A902CE3A04500B3DE74 /* StatisticsView.swift in Sources */,
+				DD3F25112CEE7FEA009E90D1 /* AddWorkoutRouterView.swift in Sources */,
+				DD3F24EE2CEE7C6F009E90D1 /* WorkoutModel.swift in Sources */,
 				DD3B7A822CE39F1100B3DE74 /* MainTabView.swift in Sources */,
+				DD3F25062CEE7F2F009E90D1 /* WorkoutViewModel.swift in Sources */,
+				DD3F250F2CEE7FD9009E90D1 /* ExerciseListView.swift in Sources */,
 				DD3B7AA42CE3A71D00B3DE74 /* StatisticsRouterView.swift in Sources */,
+				DD3F24F22CEE7CB2009E90D1 /* SpecificExerciseModel.swift in Sources */,
 				DD3B7A882CE39FD800B3DE74 /* CustomTabView.swift in Sources */,
 				DD3B7A7C2CE273CD00B3DE74 /* Variables.swift in Sources */,
 			);
@@ -509,7 +625,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -542,7 +658,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -582,6 +698,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DD3F24F32CEE7D24009E90D1 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DD3F24F42CEE7D24009E90D1 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = DD3F24F42CEE7D24009E90D1 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DD369BC32CCD35510022331E /* Project object */;
 }
