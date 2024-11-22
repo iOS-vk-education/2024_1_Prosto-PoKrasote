@@ -33,11 +33,20 @@ class WorkoutViewModel: ObservableObject {
     // MARK: FIX
     // workoutIntensivity fix -> set it
     // right now const 0
+    func workoutIntensivityResult() -> Int64 {
+        var result = 0.0
+        workoutModel.exersises.forEach {exercise in
+            exercise.sets.forEach {set in
+                result += set.weight * Double(set.repeats)
+            }
+        }
+        return Int64(result)
+    }
     func endWorkoutButtonTapped() {
         workoutModel.time = "\(timeString)"
         stopTimer()
         workoutModel.date = Date()
-        workoutModel.intensivity = 0
+        workoutModel.intensivity = workoutIntensivityResult()
         saveWorkoutInCoreData()
         workoutResultScreen = true
     }
