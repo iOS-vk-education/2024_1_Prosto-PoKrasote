@@ -7,72 +7,75 @@
 
 import SwiftUI
 
-private enum Constant {
-    static let title: String = "Statistics"
-    static let cornerRadius: CGFloat = 20
-    static let buttonFontSize: CGFloat = 20
-    static let titlesize: CGFloat = 30
-}
-
-
-struct ExerciseView: View {
-    let exercise: SpecificExerciseModel
-
-    var body: some View {
-        ZStack(alignment: .topLeading) {
-            RoundedRectangle(cornerRadius: Constant.cornerRadius)
-                .foregroundColor(systemDarkBlueColor)
-                .frame(height: 140)
-                .padding(.horizontal, 16)
-            
-            HStack {
-                /*
-                Image(exercise.image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 40, height: 40)
-                    .padding(.leading, 10)
-                 */ // WARN add exercise icons
-                Rectangle()
-                    .fill(gray3)
-                    .frame(width: 40, height: 40)
-                    .offset(x: 32, y: 10)
-                            
-                Text(exercise.name)
-                    .padding(.horizontal, 32)
-                    .offset(y: 10)
-                    .fontWeight(.bold)
-                    .font(.system(size: Constant.buttonFontSize))
-                    .foregroundColor(.white)
-                
-            }
-            
-            Rectangle()
-                .fill(yellowColor)
-                .frame(height: 60)
-                .padding(.horizontal, 32)
-                .offset(y: 70)
-        }
-    }
-}
-
 struct StatisticsView: View {
+    @EnvironmentObject var router: StatisticsRouter
+    
     var body: some View {
-        ScrollView {
-            Text(Constant.title)
-                .fontWeight(.bold)
-                .font(.system(size: Constant.titlesize))
-                .foregroundColor(.white)
-            VStack(spacing: 15) {
-                // TODO .allCases -> .startedCases
-                ForEach(ExerciseList.allCases, id: \.self) { exercise in
-                    ExerciseView(exercise: exercise.details())
+        ZStack {
+            Color.black.ignoresSafeArea()
+            
+            VStack(spacing: 48) {
+                StandartHeaderText(headerText: "Statistics")
+                    .padding(.horizontal, 24)
+                StatisticsBigButton(header: "Achivments") {
+                    router.navigateTo(.achievementView)
                 }
+                StatisticsBigButton(header: "General statistics") {
+                    router.navigateTo(.generalStatisticsView)
+                }
+                StatisticsBigButton(header: "Exercise statistics") {
+                    router.navigateTo(.exerciseStatisticsView)
+                }
+                
+                Spacer()
             }
         }
-        .background(Color.black.ignoresSafeArea())
+    }
+    
+}
+
+struct StatisticsBigButton: View {
+    @State var header: String
+    
+    let action: () -> Void
+    
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 30)
+                .foregroundStyle(systemDarkBlueColor)
+            VStack {
+                HStack {
+                    Spacer()
+                    Circle()
+                        .trim(from: 0.25, to: 0.5)
+                        .stroke(yellowColor, lineWidth: 10)
+                        .frame(width: 125, height: 125)
+                        .blur(radius: 4)
+                        .offset(x: 62.5, y: -62.5)
+                }
+                Spacer()
+            }
+            HStack(spacing: 16) {
+                Text(header)
+                    .font(.system(size: 28))
+                    .fontWeight(.bold)
+                    .padding(.leading, 20)
+                Image(systemName: "circle.fill")
+                    .font(.system(size: 50))
+                Spacer()
+            }
+            .foregroundStyle(yellowColor)
+                
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 30))
+        .frame(height: 160)
+        .padding(.horizontal, 32)
+        .onTapGesture {
+            action()
+        }
     }
 }
+
 
 
 #Preview {

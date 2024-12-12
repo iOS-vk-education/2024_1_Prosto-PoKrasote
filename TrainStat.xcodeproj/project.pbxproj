@@ -47,6 +47,9 @@
 		DD3F25112CEE7FEA009E90D1 /* AddWorkoutRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25102CEE7FEA009E90D1 /* AddWorkoutRouterView.swift */; };
 		DD3F25182CEE802F009E90D1 /* CustomRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25152CEE802F009E90D1 /* CustomRoundedRectangle.swift */; };
 		DD3F25192CEE802F009E90D1 /* StandartHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25162CEE802F009E90D1 /* StandartHeaderText.swift */; };
+		DD6A96DA2D09A78F00F49D24 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96D92D09A78F00F49D24 /* AchievementsView.swift */; };
+		DD6A96DC2D09A7B700F49D24 /* GeneralStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96DB2D09A7B700F49D24 /* GeneralStatisticsView.swift */; };
+		DD6A96DE2D09A7C400F49D24 /* ExerciseStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96DD2D09A7C400F49D24 /* ExerciseStatisticsView.swift */; };
 		F9CCEE02D9664FE56021E4CF /* Pods_TrainStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DD832913D016BC70B07CC5 /* Pods_TrainStat.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +99,9 @@
 		DD3F25102CEE7FEA009E90D1 /* AddWorkoutRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutRouterView.swift; sourceTree = "<group>"; };
 		DD3F25152CEE802F009E90D1 /* CustomRoundedRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRoundedRectangle.swift; sourceTree = "<group>"; };
 		DD3F25162CEE802F009E90D1 /* StandartHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartHeaderText.swift; sourceTree = "<group>"; };
+		DD6A96D92D09A78F00F49D24 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
+		DD6A96DB2D09A7B700F49D24 /* GeneralStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralStatisticsView.swift; sourceTree = "<group>"; };
+		DD6A96DD2D09A7C400F49D24 /* ExerciseStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseStatisticsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +223,9 @@
 			isa = PBXGroup;
 			children = (
 				DD3B7A8F2CE3A04500B3DE74 /* StatisticsView.swift */,
+				DD6A96D92D09A78F00F49D24 /* AchievementsView.swift */,
+				DD6A96DB2D09A7B700F49D24 /* GeneralStatisticsView.swift */,
+				DD6A96DD2D09A7C400F49D24 /* ExerciseStatisticsView.swift */,
 				DD3B7A962CE3A58800B3DE74 /* StatisticsRouter */,
 			);
 			path = StatisticsView;
@@ -437,6 +446,7 @@
 			files = (
 				DD3B7A7E2CE273DD00B3DE74 /* Extensions.swift in Sources */,
 				DD3B7A922CE3A40C00B3DE74 /* HomeRouter.swift in Sources */,
+				DD6A96DC2D09A7B700F49D24 /* GeneralStatisticsView.swift in Sources */,
 				DD3B7A9A2CE3A64300B3DE74 /* WorkoutRouter.swift in Sources */,
 				DD3B7AA02CE3A6B400B3DE74 /* AccountRouterView.swift in Sources */,
 				DD3F24F52CEE7D24009E90D1 /* CoreDataModel.xcdatamodeld in Sources */,
@@ -455,12 +465,14 @@
 				DD3F25042CEE7E89009E90D1 /* CoreDataManager.swift in Sources */,
 				DD3F24FF2CEE7E5F009E90D1 /* SetEntity+CoreDataProperties.swift in Sources */,
 				DD3F25002CEE7E5F009E90D1 /* WorkoutEntity+CoreDataProperties.swift in Sources */,
+				DD6A96DE2D09A7C400F49D24 /* ExerciseStatisticsView.swift in Sources */,
 				DD3F25012CEE7E5F009E90D1 /* ExerciseEntity+CoreDataClass.swift in Sources */,
 				DD3F25022CEE7E5F009E90D1 /* SetEntity+CoreDataClass.swift in Sources */,
 				DD3B7A8A2CE3A01900B3DE74 /* AccountView.swift in Sources */,
 				DD3B7A942CE3A47100B3DE74 /* HomeRouterView.swift in Sources */,
 				DD3F250D2CEE7FC6009E90D1 /* AddWorkoutRouter.swift in Sources */,
 				DD3B7A7C2CE273CD00B3DE74 /* Variables.swift in Sources */,
+				DD6A96DA2D09A78F00F49D24 /* AchievementsView.swift in Sources */,
 				DD3B7A9C2CE3A66A00B3DE74 /* WorkoutRouterView.swift in Sources */,
 				DD3B7AA22CE3A71100B3DE74 /* StatisticsRouter.swift in Sources */,
 				DD3B7A9E2CE3A69C00B3DE74 /* AccountRouter.swift in Sources */,
