@@ -11,6 +11,9 @@ class StatisticsRouter: ObservableObject {
     // Contains the possible destinations in our Router
     enum Route: Hashable {
         case statView
+        case achievementView
+        case generalStatisticsView
+        case exerciseStatisticsView
     }
     
     // Used to programatically control our navigation stack
@@ -21,6 +24,12 @@ class StatisticsRouter: ObservableObject {
         switch route {
         case .statView:
             StatisticsView()
+        case .achievementView:
+            AchievementsView()
+        case .generalStatisticsView:
+            GeneralStatisticsView()
+        case .exerciseStatisticsView:
+            ExerciseStatisticsView()
         }
     }
     

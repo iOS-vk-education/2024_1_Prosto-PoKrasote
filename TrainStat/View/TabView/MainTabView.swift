@@ -4,7 +4,9 @@
 //
 //  Created by Kovalev Gleb on 12.11.2024.
 //
+
 // MainTabView - tab view that we put in main screen
+
 import SwiftUI
 
 struct MainTabView: View {

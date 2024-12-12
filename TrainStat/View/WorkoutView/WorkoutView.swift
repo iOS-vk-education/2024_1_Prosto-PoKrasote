@@ -26,11 +26,11 @@ struct WorkoutView: View {
         static let circleSize: CGFloat = 48
     }
     var body: some View {
-        if viewModel.workoutResultScreen {
-            resultView
-        } else {
-            ZStack {
-                Color(.black).ignoresSafeArea()
+        ZStack {
+            Color(.black).ignoresSafeArea()
+            if viewModel.workoutResultScreen {
+                resultView
+            } else {
                 VStack(spacing: 32) {
                     StandartHeaderText(headerText: "Workout")
                         .padding(.leading, 21)
@@ -44,12 +44,12 @@ struct WorkoutView: View {
                     .padding(.horizontal, ConstantSize.paddingHorizontal)
                 }
             }
-            .sheet(isPresented: $viewModel.isSheetShowing) {
-                AddWorkoutRouterView(content: {
-                    MuscleGroupsView()
-                })
-                .environmentObject(viewModel)
-            }
+        }
+        .sheet(isPresented: $viewModel.isSheetShowing) {
+            AddWorkoutRouterView(content: {
+                MuscleGroupsView()
+            })
+            .environmentObject(viewModel)
         }
     }
     
