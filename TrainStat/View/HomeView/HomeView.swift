@@ -1,13 +1,14 @@
 import SwiftUI
+import CoreData
 
 private enum Constant {
-    static let bigCircleSize: CGFloat = 34
-    static let smallCircleSize: CGFloat = 32
+    static let bigCircleSize: CGFloat = 33
+    static let smallCircleSize: CGFloat = 31
     static let startExerciseButtonHeight: CGFloat = 120
     static let recentTrainingsButtonHeight: CGFloat = 69
     static let elementSpacing: CGFloat = 15
     static let horizontalPadding: CGFloat = 24
-    static let calendarHeight: CGFloat = 290
+    static let calendarHeight: CGFloat = 293
     static let pickerSize: CGSize = CGSize(width: 120, height: 100)
     static let cornerRadius: CGFloat = 20
     static let overlayPadding: CGFloat = 16
@@ -15,12 +16,25 @@ private enum Constant {
 }
 
 struct HomeView: View {
-    @State private var selectedDates = Array(repeating: false, count: 31)
+    @State private var selectedDates: Set<Date> = []
     @State private var selectedMonth = Calendar.current.component(.month, from: Date())
+    @State private var selectedYear = Calendar.current.component(.year, from: Date())
     
-    private let columns = Array(repeating: GridItem(.flexible()), count: 7)
+    private var calendar: Calendar = {
+        var cal = Calendar.autoupdatingCurrent
+        cal.firstWeekday = 2
+        cal.locale = Locale.autoupdatingCurrent
+        cal.timeZone = TimeZone.autoupdatingCurrent
+        return cal
+    }()
     
-    private let months = Calendar.current.monthSymbols
+    private let availableYears = Array(2020...2030)
+    
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: Constant.elementSpacing), count: 7)
+    private var months: [String] {
+        calendar.monthSymbols
+    }
+    
     
     var body: some View {
         VStack {
@@ -38,6 +52,9 @@ struct HomeView: View {
             Spacer()
         }
         .background(Color.black.ignoresSafeArea())
+        .onAppear {
+            loadSelectedDates()
+        }
     }
     
     private var header: some View {
@@ -55,61 +72,89 @@ struct HomeView: View {
     
     private var calendarSection: some View {
         VStack(alignment: .leading, spacing: Constant.elementSpacing) {
-            monthPicker
+            monthYearPicker
                 .padding(.horizontal)
                 .padding(.bottom, 10)
             
             RoundedRectangle(cornerRadius: Constant.cornerRadius)
                 .frame(height: Constant.calendarHeight)
                 .foregroundColor(systemDarkBlueColor)
-                .overlay(calendarGrid.padding(Constant.overlayPadding))
+                .overlay(
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        ForEach(weekdaySymbolsAlignedToStartOfWeek, id: \.self) { weekday in
+                            Text(weekday)
+                                .font(.system(size: 15))
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity)
+                        }
+                        ForEach(Array(generateDays().enumerated()), id: \.offset) { _, day in
+                            if let day = day {
+                                calendarDayView(day: day)
+                                    .onTapGesture {
+                                        toggleDaySelection(day: day)
+                                    }
+                            } else {
+                                Spacer()
+                            }
+                        }
+                    }
+                    .padding(Constant.overlayPadding)
+                )
         }
     }
     
-    private var monthPicker: some View {
+    private var monthYearPicker: some View {
         HStack {
             Text("Trainings in")
                 .fontWeight(.bold)
                 .foregroundColor(.white)
+            
             Spacer()
             
-            Picker("Select Month", selection: $selectedMonth) {
-                ForEach(1...12, id: \.self) { month in
-                    Text(months[month - 1]).tag(month)
+            HStack(spacing: 10) {
+                Picker("Select Month", selection: $selectedMonth) {
+                    ForEach(1...12, id: \.self) { month in
+                        Text(months[month - 1]).tag(month)
+                    }
                 }
-            }
-            .pickerStyle(.wheel)
-            .frame(width: Constant.pickerSize.width, height: Constant.pickerSize.height)
-            .background(
-                RoundedRectangle(cornerRadius: Constant.cornerRadius)
-                    .foregroundColor(systemDarkBlueColor)
-            )
-        }
-    }
-    
-    private var calendarGrid: some View {
-        LazyVGrid(columns: columns, spacing: Constant.elementSpacing) {
-            ForEach(Array(generateDays().enumerated()), id: \.offset) { _, day in
-                if let day = day {
-                    calendarDayView(day: day)
-                } else {
-                    Spacer()
+                .pickerStyle(.menu)
+                .frame(width: 125, height: 30)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(systemDarkBlueColor)
+                )
+                .accentColor(yellowColor)
+                
+                Picker("Select Year", selection: $selectedYear) {
+                    ForEach(availableYears, id: \.self) { year in
+                        Text(String(year)).tag(year)
+                    }
                 }
+                .pickerStyle(.menu)
+                .frame(width: 85, height: 30)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(systemDarkBlueColor)
+                )
+                .accentColor(.white)
             }
         }
     }
     
     private func calendarDayView(day: Int) -> some View {
-        ZStack {
+        let isSelected = isDaySelected(day)
+        return ZStack {
             Circle()
                 .stroke(style: StrokeStyle(lineWidth: 2, dash: isToday(day) ? [8, 8] : []))
                 .frame(width: Constant.bigCircleSize, height: Constant.bigCircleSize)
-                .foregroundStyle(yellowColor)
+                .foregroundColor(yellowColor)
             Circle()
                 .frame(width: Constant.smallCircleSize, height: Constant.smallCircleSize)
-                .foregroundColor(.black)
+                .foregroundColor(isSelected ? yellowColor : .black)
+            
             Text("\(day)")
-                .foregroundColor(.white)
+                .foregroundColor(isSelected ? .black : .white)
                 .fontWeight(.bold)
         }
     }
@@ -143,25 +188,83 @@ struct HomeView: View {
     }
     
     private func generateDays() -> [Int?] {
-        let calendar = Calendar(identifier: .gregorian)
-        let components = DateComponents(year: Calendar.current.component(.year, from: Date()), month: selectedMonth)
+        let components = DateComponents(year: selectedYear, month: selectedMonth)
         guard let startOfMonth = calendar.date(from: components),
               let range = calendar.range(of: .day, in: .month, for: startOfMonth) else {
             return []
         }
         
         let days = Array(range)
-        let firstWeekday = (calendar.component(.weekday, from: startOfMonth) + 5) % 7
-        return Array(repeating: nil, count: firstWeekday) + days
+        
+        let weekdayOfFirstDay = calendar.component(.weekday, from: startOfMonth)
+        let offset = (weekdayOfFirstDay - calendar.firstWeekday + 7) % 7
+        
+        return Array(repeating: nil, count: offset) + days
     }
     
     private func isToday(_ day: Int) -> Bool {
-        let today = Calendar.current.dateComponents([.day, .month, .year], from: Date())
-        return today.day == day && today.month == selectedMonth
+        let today = calendar.dateComponents([.day, .month, .year], from: Date())
+        return (today.day == day && today.month == selectedMonth && today.year == selectedYear)
+    }
+    
+    private var weekdaySymbolsAlignedToStartOfWeek: [String] {
+        let symbols_week = calendar.shortWeekdaySymbols
+        let startIndex = calendar.firstWeekday - 1
+        return Array(symbols_week[startIndex...]) + Array(symbols_week[..<startIndex])
+    }
+    
+    private func isDaySelected(_ day: Int) -> Bool {
+        guard let date = dateFromDay(day) else { return false }
+        return selectedDates.contains(date)
+    }
+    
+    private func dateFromDay(_ day: Int) -> Date? {
+        let components = DateComponents(year: selectedYear, month: selectedMonth, day: day)
+        return calendar.date(from: components)
+    }
+    
+    private func toggleDaySelection(day: Int) {
+        guard let date = dateFromDay(day) else { return }
+        if selectedDates.contains(date) {
+            removeWorkout(for: date)
+        } else {
+            saveWorkout(for: date)
+        }
+    }
+    
+    private func saveWorkout(for date: Date) {
+        let manager = CoreDataManager.shared
+        
+        let workout = WorkoutEntity(context: manager.persistentContainer.viewContext)
+        workout.id = UUID()
+        workout.date = date
+        
+        do {
+            try manager.save()
+            selectedDates.insert(date)
+        } catch {
+            print("Failed to save workout: \(error)")
+        }
+    }
+    
+    private func removeWorkout(for date: Date) {
+        let manager = CoreDataManager.shared
+        let workouts = manager.fetchWorkouts().filter { $0.date != nil && Calendar.current.isDate($0.date!, inSameDayAs: date) }
+        for w in workouts {
+            manager.deleteWorkout(w)
+        }
+        
+        selectedDates.remove(date)
+    }
+    
+    private func loadSelectedDates() {
+        let manager = CoreDataManager.shared
+        let workouts = manager.fetchWorkouts()
+        let dates = workouts.compactMap { $0.date }
+        self.selectedDates = Set(dates)
     }
 }
 
 #Preview {
     HomeView()
 }
-
