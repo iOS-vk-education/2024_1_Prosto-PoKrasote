@@ -5,7 +5,7 @@
 //  Created by Kovalev Gleb on 20.11.2024.
 //
 
-struct SpecificExerciseModel {
+struct SpecificExerciseModel: Hashable, Equatable {
     var name: String
     var image: String
     var groupOfMuscles: String

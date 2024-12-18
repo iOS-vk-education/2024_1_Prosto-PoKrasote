@@ -1,6 +1,6 @@
 //
 //  WorkoutEntity+CoreDataProperties.swift
-//  
+//  TestTrainStat
 //
 //  Created by Kovalev Gleb on 20.11.2024.
 //
@@ -16,10 +16,10 @@ extension WorkoutEntity {
         return NSFetchRequest<WorkoutEntity>(entityName: "WorkoutEntity")
     }
 
-    @NSManaged public var time: String?
     @NSManaged public var intensivity: Int64
     @NSManaged public var id: UUID?
     @NSManaged public var date: Date?
+    @NSManaged public var time: String?
     @NSManaged public var exercises: NSOrderedSet?
 
 }
@@ -56,5 +56,9 @@ extension WorkoutEntity {
 
     @objc(removeExercises:)
     @NSManaged public func removeFromExercises(_ values: NSOrderedSet)
+
+}
+
+extension WorkoutEntity : Identifiable {
 
 }
