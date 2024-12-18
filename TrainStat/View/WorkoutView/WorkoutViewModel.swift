@@ -13,7 +13,7 @@ class WorkoutViewModel: ObservableObject {
     
     @Published var timeString: String = "00:00"
     @Published var isSheetShowing: Bool = false
-    @Published var workoutResultScreen: Bool = true
+    @Published var workoutResultScreen: Bool = false
     
     private var timer: Timer?
     private var totalSeconds: Int = 0

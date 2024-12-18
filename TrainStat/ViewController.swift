@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .blue
 
-        let mainTabView = MainTabView()
+        let mainTabView = MainView()
         let hostingController = UIHostingController(rootView: mainTabView)
 
         addChild(hostingController)

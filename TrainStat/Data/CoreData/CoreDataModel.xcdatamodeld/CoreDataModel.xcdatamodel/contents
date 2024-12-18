@@ -6,7 +6,7 @@
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="intensivity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SetEntity" inverseName="exercise" inverseEntity="SetEntity"/>
+        <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SetEntity" inverseName="exercise" inverseEntity="SetEntity"/>
         <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutEntity" inverseName="exercises" inverseEntity="WorkoutEntity"/>
     </entity>
     <entity name="SetEntity" representedClassName="SetEntity" syncable="YES">
