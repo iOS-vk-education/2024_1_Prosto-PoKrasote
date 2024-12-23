@@ -1,5 +1,247 @@
+import UIKit
+import SnapKit
 import SwiftUI
-import CoreData
+
+struct Training {
+    let date: String
+    let timeInMinutes: Int
+    let intensity: Int
+}
+
+final class RecentTrainingsViewController: UIViewController {
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Recent trainings"
+        label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+        label.textColor = UIColor.systemYellow
+        return label
+    }()
+    
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = .clear
+        table.separatorStyle = .none
+        table.alwaysBounceVertical = true
+        table.isScrollEnabled = true
+        return table
+    }()
+    
+    private var trainings: [Training] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .black
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(RecentTrainingCell.self, forCellReuseIdentifier: RecentTrainingCell.identifier)
+        
+        view.addSubview(titleLabel)
+        view.addSubview(tableView)
+        setupLayout()
+        loadTrainingsFromCoreData()
+    }
+
+    private func loadTrainingsFromCoreData() {
+        let manager = CoreDataManager.shared
+        let workoutEntities = manager.fetchWorkouts()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        
+        self.trainings = workoutEntities.map { workout in
+            let dateString: String
+            if let date = workout.date {
+                dateString = formatter.string(from: date)
+            } else {
+                dateString = "No date"
+            }
+            
+            let timeInMinutes = Int(workout.time ?? "0") ?? 0
+            let intensityValue = Int(workout.intensivity)
+            
+            return Training(
+                date: dateString,
+                timeInMinutes: timeInMinutes,
+                intensity: intensityValue
+            )
+        }
+        tableView.reloadData()
+    }
+    
+    private func setupLayout() {
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.leading.equalToSuperview().offset(24)
+            make.trailing.equalToSuperview().inset(24)
+        }
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+
+
+    private func fetchLastWorkoutDateFromCoreData() -> Date? {
+        let manager = CoreDataManager.shared
+        let workouts = manager.fetchWorkouts()
+        let sorted = workouts.sorted { ($0.date ?? .distantPast) > ($1.date ?? .distantPast) }
+        return sorted.first?.date
+    }
+}
+
+extension RecentTrainingsViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return trainings.count
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: RecentTrainingCell.identifier,
+            for: indexPath
+        ) as? RecentTrainingCell else {
+            return UITableViewCell()
+        }
+        
+        let training = trainings[indexPath.row]
+        cell.configure(with: training)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+final class RecentTrainingCell: UITableViewCell {
+    
+    static let identifier = "RecentTrainingCellIdentifier"
+    
+    private let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.darkGray
+        view.layer.cornerRadius = 20
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        return label
+    }()
+    
+    private let timeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        return label
+    }()
+    
+    private let intensityLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        return label
+    }()
+    
+    private let firstDivider: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray
+        return view
+    }()
+    
+    private let secondDivider: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray
+        return view
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .clear
+        selectionStyle = .none
+        
+        contentView.addSubview(containerView)
+        containerView.addSubview(dateLabel)
+        
+        containerView.addSubview(firstDivider)
+        containerView.addSubview(timeLabel)
+        containerView.addSubview(secondDivider)
+        containerView.addSubview(intensityLabel)
+        
+        setupLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupLayout() {
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(8)
+        }
+        
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(12)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
+        }
+        
+        firstDivider.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(1)
+        }
+        
+        timeLabel.snp.makeConstraints { make in
+            make.top.equalTo(firstDivider.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
+        }
+        
+        secondDivider.snp.makeConstraints { make in
+            make.top.equalTo(timeLabel.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(1)
+        }
+        
+        intensityLabel.snp.makeConstraints { make in
+            make.top.equalTo(secondDivider.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(12)
+        }
+    }
+    
+    func configure(with training: Training) {
+        dateLabel.text = "Date :  \(training.date)"
+        timeLabel.text = "Time (min) :  \(training.timeInMinutes)"
+        intensityLabel.text = "Intensity :  \(training.intensity)"
+    }
+}
+
+struct RecentTrainingsViewControllerRepresentable: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> RecentTrainingsViewController {
+        return RecentTrainingsViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: RecentTrainingsViewController, context: Context) {
+    }
+}
+
 
 private enum Constant {
     static let bigCircleSize: CGFloat = 33
@@ -16,6 +258,7 @@ private enum Constant {
 }
 
 struct HomeView: View {
+    @State private var forSheet: Bool = false
     @State private var selectedDates: Set<Date> = []
     @State private var selectedMonth = Calendar.current.component(.month, from: Date())
     @State private var selectedYear = Calendar.current.component(.year, from: Date())
@@ -29,12 +272,10 @@ struct HomeView: View {
     }()
     
     private let availableYears = Array(2020...2030)
-    
     private let columns = Array(repeating: GridItem(.flexible(), spacing: Constant.elementSpacing), count: 7)
     private var months: [String] {
         calendar.monthSymbols
     }
-    
     
     var body: some View {
         VStack {
@@ -51,6 +292,17 @@ struct HomeView: View {
             
             Spacer()
         }
+        .sheet(isPresented: $forSheet) {
+            NavigationView {
+                RecentTrainingsViewControllerRepresentable()
+                    .navigationBarTitleDisplayMode(.inline)
+            }
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
+            .presentationBackground(.black)
+        }
+
+
         .background(Color.black.ignoresSafeArea())
         .onAppear {
             loadSelectedDates()
@@ -103,7 +355,6 @@ struct HomeView: View {
                 )
         }
     }
-    
     private var monthYearPicker: some View {
         HStack {
             Text("Trainings in")
@@ -141,7 +392,6 @@ struct HomeView: View {
             }
         }
     }
-    
     private func calendarDayView(day: Int) -> some View {
         let isSelected = isDaySelected(day)
         return ZStack {
@@ -173,7 +423,7 @@ struct HomeView: View {
                 }
             }
             
-            Button(action: { print("Recent trainings tapped") }) {
+            Button(action: { forSheet = true }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: Constant.cornerRadius)
                         .frame(height: Constant.recentTrainingsButtonHeight)
@@ -186,7 +436,6 @@ struct HomeView: View {
             }
         }
     }
-    
     private func generateDays() -> [Int?] {
         let components = DateComponents(year: selectedYear, month: selectedMonth)
         guard let startOfMonth = calendar.date(from: components),
@@ -195,7 +444,6 @@ struct HomeView: View {
         }
         
         let days = Array(range)
-        
         let weekdayOfFirstDay = calendar.component(.weekday, from: startOfMonth)
         let offset = (weekdayOfFirstDay - calendar.firstWeekday + 7) % 7
         
@@ -208,9 +456,9 @@ struct HomeView: View {
     }
     
     private var weekdaySymbolsAlignedToStartOfWeek: [String] {
-        let symbols_week = calendar.shortWeekdaySymbols
+        let symbols = calendar.shortWeekdaySymbols
         let startIndex = calendar.firstWeekday - 1
-        return Array(symbols_week[startIndex...]) + Array(symbols_week[..<startIndex])
+        return Array(symbols[startIndex...]) + Array(symbols[..<startIndex])
     }
     
     private func isDaySelected(_ day: Int) -> Bool {
@@ -234,7 +482,6 @@ struct HomeView: View {
     
     private func saveWorkout(for date: Date) {
         let manager = CoreDataManager.shared
-        
         let workout = WorkoutEntity(context: manager.persistentContainer.viewContext)
         workout.id = UUID()
         workout.date = date
@@ -249,11 +496,12 @@ struct HomeView: View {
     
     private func removeWorkout(for date: Date) {
         let manager = CoreDataManager.shared
-        let workouts = manager.fetchWorkouts().filter { $0.date != nil && Calendar.current.isDate($0.date!, inSameDayAs: date) }
+        let workouts = manager.fetchWorkouts().filter {
+            $0.date != nil && Calendar.current.isDate($0.date!, inSameDayAs: date)
+        }
         for w in workouts {
             manager.deleteWorkout(w)
         }
-        
         selectedDates.remove(date)
     }
     
@@ -268,3 +516,4 @@ struct HomeView: View {
 #Preview {
     HomeView()
 }
+
