@@ -3,65 +3,60 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD369BCF2CCD35510022331E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD369BCE2CCD35510022331E /* AppDelegate.swift */; };
-		DD369BD12CCD35510022331E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD369BD02CCD35510022331E /* SceneDelegate.swift */; };
-		DD369BD32CCD35510022331E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD369BD22CCD35510022331E /* ViewController.swift */; };
-		DD369BD82CCD35520022331E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD369BD72CCD35520022331E /* Assets.xcassets */; };
-		DD369BDB2CCD35520022331E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DD369BDA2CCD35520022331E /* Base */; };
-		DD3B7A7C2CE273CD00B3DE74 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A7B2CE273CD00B3DE74 /* Variables.swift */; };
-		DD3B7A7E2CE273DD00B3DE74 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A7D2CE273DD00B3DE74 /* Extensions.swift */; };
-		DD3B7A822CE39F1100B3DE74 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A812CE39F1100B3DE74 /* MainTabView.swift */; };
-		DD3B7A882CE39FD800B3DE74 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A872CE39FD800B3DE74 /* CustomTabView.swift */; };
-		DD3B7A8A2CE3A01900B3DE74 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A892CE3A01900B3DE74 /* AccountView.swift */; };
-		DD3B7A8C2CE3A02F00B3DE74 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A8B2CE3A02F00B3DE74 /* WorkoutView.swift */; };
-		DD3B7A8E2CE3A03A00B3DE74 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A8D2CE3A03A00B3DE74 /* HomeView.swift */; };
-		DD3B7A902CE3A04500B3DE74 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A8F2CE3A04500B3DE74 /* StatisticsView.swift */; };
-		DD3B7A922CE3A40C00B3DE74 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A912CE3A40C00B3DE74 /* HomeRouter.swift */; };
-		DD3B7A942CE3A47100B3DE74 /* HomeRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A932CE3A47100B3DE74 /* HomeRouterView.swift */; };
-		DD3B7A9A2CE3A64300B3DE74 /* WorkoutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A992CE3A64300B3DE74 /* WorkoutRouter.swift */; };
-		DD3B7A9C2CE3A66A00B3DE74 /* WorkoutRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A9B2CE3A66A00B3DE74 /* WorkoutRouterView.swift */; };
-		DD3B7A9E2CE3A69C00B3DE74 /* AccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A9D2CE3A69C00B3DE74 /* AccountRouter.swift */; };
-		DD3B7AA02CE3A6B400B3DE74 /* AccountRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A9F2CE3A6B400B3DE74 /* AccountRouterView.swift */; };
-		DD3B7AA22CE3A71100B3DE74 /* StatisticsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7AA12CE3A71100B3DE74 /* StatisticsRouter.swift */; };
-		DD3B7AA42CE3A71D00B3DE74 /* StatisticsRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7AA32CE3A71D00B3DE74 /* StatisticsRouterView.swift */; };
-		DD3F24EA2CEE7C2B009E90D1 /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24E92CEE7C2B009E90D1 /* ExerciseModel.swift */; };
-		DD3F24EE2CEE7C6F009E90D1 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24ED2CEE7C6F009E90D1 /* WorkoutModel.swift */; };
-		DD3F24F02CEE7C8E009E90D1 /* SetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24EF2CEE7C8E009E90D1 /* SetModel.swift */; };
-		DD3F24F22CEE7CB2009E90D1 /* SpecificExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F12CEE7CB2009E90D1 /* SpecificExerciseModel.swift */; };
-		DD3F24F52CEE7D24009E90D1 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F32CEE7D24009E90D1 /* CoreDataModel.xcdatamodeld */; };
-		DD3F24FD2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24FB2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataClass.swift */; };
-		DD3F24FE2CEE7E5F009E90D1 /* ExerciseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F82CEE7E5F009E90D1 /* ExerciseEntity+CoreDataProperties.swift */; };
-		DD3F24FF2CEE7E5F009E90D1 /* SetEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24FA2CEE7E5F009E90D1 /* SetEntity+CoreDataProperties.swift */; };
-		DD3F25002CEE7E5F009E90D1 /* WorkoutEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24FC2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataProperties.swift */; };
-		DD3F25012CEE7E5F009E90D1 /* ExerciseEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F72CEE7E5F009E90D1 /* ExerciseEntity+CoreDataClass.swift */; };
-		DD3F25022CEE7E5F009E90D1 /* SetEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F92CEE7E5F009E90D1 /* SetEntity+CoreDataClass.swift */; };
-		DD3F25042CEE7E89009E90D1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25032CEE7E89009E90D1 /* CoreDataManager.swift */; };
-		DD3F25062CEE7F2F009E90D1 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25052CEE7F2F009E90D1 /* WorkoutViewModel.swift */; };
-		DD3F250A2CEE7F99009E90D1 /* MuscleGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25092CEE7F99009E90D1 /* MuscleGroupsView.swift */; };
-		DD3F250D2CEE7FC6009E90D1 /* AddWorkoutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F250C2CEE7FC6009E90D1 /* AddWorkoutRouter.swift */; };
-		DD3F250F2CEE7FD9009E90D1 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F250E2CEE7FD9009E90D1 /* ExerciseListView.swift */; };
-		DD3F25112CEE7FEA009E90D1 /* AddWorkoutRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25102CEE7FEA009E90D1 /* AddWorkoutRouterView.swift */; };
-		DD3F25182CEE802F009E90D1 /* CustomRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25152CEE802F009E90D1 /* CustomRoundedRectangle.swift */; };
-		DD3F25192CEE802F009E90D1 /* StandartHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25162CEE802F009E90D1 /* StandartHeaderText.swift */; };
-		DD5E02AA2D11DF3600CBB074 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = DD5E02A92D11DF3600CBB074 /* SwiftUICharts */; };
-		DD5E02AD2D12255700CBB074 /* OneExerciseStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E02AC2D12255700CBB074 /* OneExerciseStatisticsView.swift */; };
-		DD5E02B02D12AC8F00CBB074 /* OneExerciseStatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E02AF2D12AC8F00CBB074 /* OneExerciseStatisticsViewModel.swift */; };
-		DD6A96DA2D09A78F00F49D24 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96D92D09A78F00F49D24 /* AchievementsView.swift */; };
-		DD6A96DC2D09A7B700F49D24 /* GeneralStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96DB2D09A7B700F49D24 /* GeneralStatisticsView.swift */; };
-		DD6A96DE2D09A7C400F49D24 /* ExerciseStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96DD2D09A7C400F49D24 /* ExerciseStatisticsView.swift */; };
-		DD6A96E22D0AED9400F49D24 /* GeneralStatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96E12D0AED9400F49D24 /* GeneralStatisticsViewModel.swift */; };
-		DD6A96E52D0B25CC00F49D24 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96E42D0B25CC00F49D24 /* MainView.swift */; };
-		F9CCEE02D9664FE56021E4CF /* Pods_TrainStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DD832913D016BC70B07CC5 /* Pods_TrainStat.framework */; };
+		FAB361AF2D0E4A9300A24840 /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24E92CEE7C2B009E90D1 /* ExerciseModel.swift */; };
+		FAB361B02D0E4A9300A24840 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24ED2CEE7C6F009E90D1 /* WorkoutModel.swift */; };
+		FAB361B12D0E4A9300A24840 /* SetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24EF2CEE7C8E009E90D1 /* SetModel.swift */; };
+		FAB361B22D0E4A9300A24840 /* SpecificExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F12CEE7CB2009E90D1 /* SpecificExerciseModel.swift */; };
+		FAB361B32D0E4A9300A24840 /* ExerciseEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F72CEE7E5F009E90D1 /* ExerciseEntity+CoreDataClass.swift */; };
+		FAB361B42D0E4A9300A24840 /* ExerciseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F82CEE7E5F009E90D1 /* ExerciseEntity+CoreDataProperties.swift */; };
+		FAB361B52D0E4A9300A24840 /* SetEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F92CEE7E5F009E90D1 /* SetEntity+CoreDataClass.swift */; };
+		FAB361B62D0E4A9300A24840 /* SetEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24FA2CEE7E5F009E90D1 /* SetEntity+CoreDataProperties.swift */; };
+		FAB361B72D0E4A9300A24840 /* WorkoutEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24FB2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataClass.swift */; };
+		FAB361B82D0E4A9300A24840 /* WorkoutEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24FC2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataProperties.swift */; };
+		FAB361B92D0E4A9300A24840 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD3F24F32CEE7D24009E90D1 /* CoreDataModel.xcdatamodeld */; };
+		FAB361BA2D0E4A9300A24840 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25032CEE7E89009E90D1 /* CoreDataManager.swift */; };
+		FAB361BB2D0E4A9300A24840 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A8F2CE3A04500B3DE74 /* StatisticsView.swift */; };
+		FAB361BC2D0E4A9300A24840 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96D92D09A78F00F49D24 /* AchievementsView.swift */; };
+		FAB361BD2D0E4A9300A24840 /* GeneralStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96DB2D09A7B700F49D24 /* GeneralStatisticsView.swift */; };
+		FAB361BE2D0E4A9300A24840 /* ExerciseStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A96DD2D09A7C400F49D24 /* ExerciseStatisticsView.swift */; };
+		FAB361BF2D0E4A9300A24840 /* StatisticsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7AA12CE3A71100B3DE74 /* StatisticsRouter.swift */; };
+		FAB361C02D0E4A9300A24840 /* StatisticsRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7AA32CE3A71D00B3DE74 /* StatisticsRouterView.swift */; };
+		FAB361C12D0E4A9300A24840 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A8D2CE3A03A00B3DE74 /* HomeView.swift */; };
+		FAB361C22D0E4A9300A24840 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A912CE3A40C00B3DE74 /* HomeRouter.swift */; };
+		FAB361C32D0E4A9300A24840 /* HomeRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A932CE3A47100B3DE74 /* HomeRouterView.swift */; };
+		FAB361C42D0E4A9300A24840 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A8B2CE3A02F00B3DE74 /* WorkoutView.swift */; };
+		FAB361C52D0E4A9300A24840 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25052CEE7F2F009E90D1 /* WorkoutViewModel.swift */; };
+		FAB361C62D0E4A9300A24840 /* MuscleGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25092CEE7F99009E90D1 /* MuscleGroupsView.swift */; };
+		FAB361C72D0E4A9300A24840 /* AddWorkoutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F250C2CEE7FC6009E90D1 /* AddWorkoutRouter.swift */; };
+		FAB361C82D0E4A9300A24840 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F250E2CEE7FD9009E90D1 /* ExerciseListView.swift */; };
+		FAB361C92D0E4A9300A24840 /* AddWorkoutRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25102CEE7FEA009E90D1 /* AddWorkoutRouterView.swift */; };
+		FAB361CA2D0E4A9300A24840 /* WorkoutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A992CE3A64300B3DE74 /* WorkoutRouter.swift */; };
+		FAB361CB2D0E4A9300A24840 /* WorkoutRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A9B2CE3A66A00B3DE74 /* WorkoutRouterView.swift */; };
+		FAB361CC2D0E4A9300A24840 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A892CE3A01900B3DE74 /* AccountView.swift */; };
+		FAB361CD2D0E4A9300A24840 /* AccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A9D2CE3A69C00B3DE74 /* AccountRouter.swift */; };
+		FAB361CE2D0E4A9300A24840 /* AccountRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A9F2CE3A6B400B3DE74 /* AccountRouterView.swift */; };
+		FAB361CF2D0E4A9300A24840 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A812CE39F1100B3DE74 /* MainTabView.swift */; };
+		FAB361D02D0E4A9300A24840 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A872CE39FD800B3DE74 /* CustomTabView.swift */; };
+		FAB361D12D0E4A9300A24840 /* CustomRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25152CEE802F009E90D1 /* CustomRoundedRectangle.swift */; };
+		FAB361D22D0E4A9300A24840 /* StandartHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25162CEE802F009E90D1 /* StandartHeaderText.swift */; };
+		FAB361D32D0E4A9300A24840 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A7B2CE273CD00B3DE74 /* Variables.swift */; };
+		FAB361D42D0E4A9300A24840 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A7D2CE273DD00B3DE74 /* Extensions.swift */; };
+		FAB361D52D0E4A9300A24840 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD369BCE2CCD35510022331E /* AppDelegate.swift */; };
+		FAB361D62D0E4A9300A24840 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD369BD02CCD35510022331E /* SceneDelegate.swift */; };
+		FAB361D72D0E4A9300A24840 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD369BD22CCD35510022331E /* ViewController.swift */; };
+		FAB361E12D0E4B2C00A24840 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB361E02D0E4B2C00A24840 /* UIKit.framework */; };
+		FAB361E32D0E4B3600A24840 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB361E22D0E4B3600A24840 /* SwiftUI.framework */; };
+		FAB361E62D0E4B6200A24840 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD369BD92CCD35520022331E /* LaunchScreen.storyboard */; };
+		FAC839132D1A0FF300814BCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAC839122D1A0FF300814BCC /* GoogleService-Info.plist */; };
+		FAC839172D1A15D500814BCC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FAC839162D1A15D500814BCC /* FirebaseAuth */; };
+		FAD9BCE62D0E4DFD00F36837 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FAD9BCE52D0E4DFD00F36837 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		37CB1DFF58D50F949428E6CA /* Pods-TrainStat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainStat.debug.xcconfig"; path = "Target Support Files/Pods-TrainStat/Pods-TrainStat.debug.xcconfig"; sourceTree = "<group>"; };
-		A7DD832913D016BC70B07CC5 /* Pods_TrainStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrainStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B39E688E2DE8B45694F2E376 /* Pods-TrainStat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainStat.release.xcconfig"; path = "Target Support Files/Pods-TrainStat/Pods-TrainStat.release.xcconfig"; sourceTree = "<group>"; };
 		DD369BCB2CCD35510022331E /* TrainStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD369BCE2CCD35510022331E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD369BD02CCD35510022331E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,38 +104,38 @@
 		DD6A96D92D09A78F00F49D24 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
 		DD6A96DB2D09A7B700F49D24 /* GeneralStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralStatisticsView.swift; sourceTree = "<group>"; };
 		DD6A96DD2D09A7C400F49D24 /* ExerciseStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseStatisticsView.swift; sourceTree = "<group>"; };
-		DD6A96E12D0AED9400F49D24 /* GeneralStatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralStatisticsViewModel.swift; sourceTree = "<group>"; };
-		DD6A96E42D0B25CC00F49D24 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		FAB361E02D0E4B2C00A24840 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FAB361E22D0E4B3600A24840 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		FAC839122D1A0FF300814BCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FAA9D97A2D0E430C00C31BDE /* Managers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Managers; sourceTree = "<group>"; };
+		FABBCC652D151EB1002715DC /* AuthView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AuthView; sourceTree = "<group>"; };
+		FAC839182D1A1F8D00814BCC /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
+		FAC839262D1A47C200814BCC /* EditNameView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EditNameView; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
-		DD369BC82CCD35510022331E /* Frameworks */ = {
+		FAB361AB2D0E4A3000A24840 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9CCEE02D9664FE56021E4CF /* Pods_TrainStat.framework in Frameworks */,
-				DD5E02AA2D11DF3600CBB074 /* SwiftUICharts in Frameworks */,
+				FAB361E32D0E4B3600A24840 /* SwiftUI.framework in Frameworks */,
+				FAC839172D1A15D500814BCC /* FirebaseAuth in Frameworks */,
+				FAB361E12D0E4B2C00A24840 /* UIKit.framework in Frameworks */,
+				FAD9BCE62D0E4DFD00F36837 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DB9BF90C28F741D105E84D56 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				37CB1DFF58D50F949428E6CA /* Pods-TrainStat.debug.xcconfig */,
-				B39E688E2DE8B45694F2E376 /* Pods-TrainStat.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		DD369BC22CCD35510022331E = {
 			isa = PBXGroup;
 			children = (
 				DD369BCD2CCD35510022331E /* TrainStat */,
 				DD369BCC2CCD35510022331E /* Products */,
-				DB9BF90C28F741D105E84D56 /* Pods */,
 				E47B3E0E1CA7535879C6B061 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -156,6 +151,7 @@
 		DD369BCD2CCD35510022331E /* TrainStat */ = {
 			isa = PBXGroup;
 			children = (
+				FAA9D97A2D0E430C00C31BDE /* Managers */,
 				DD3F24EB2CEE7C38009E90D1 /* Data */,
 				DD3B7A7F2CE39EE900B3DE74 /* View */,
 				DD3B7A7A2CE273B200B3DE74 /* Global */,
@@ -165,6 +161,7 @@
 				DD369BD72CCD35520022331E /* Assets.xcassets */,
 				DD369BD92CCD35520022331E /* LaunchScreen.storyboard */,
 				DD369BDC2CCD35520022331E /* Info.plist */,
+				FAC839122D1A0FF300814BCC /* GoogleService-Info.plist */,
 			);
 			path = TrainStat;
 			sourceTree = "<group>";
@@ -182,8 +179,7 @@
 		DD3B7A7F2CE39EE900B3DE74 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DD6A96E32D0B25BE00F49D24 /* MainView */,
-				DD3B7A802CE39EF400B3DE74 /* TabView */,
+				FABBCC652D151EB1002715DC /* AuthView */,
 				DD3B7A862CE39FB800B3DE74 /* StatisticsView */,
 				DD3B7A852CE39FB000B3DE74 /* HomeView */,
 				DD3B7A842CE39F4100B3DE74 /* WorkoutView */,
@@ -204,6 +200,8 @@
 		DD3B7A832CE39F3700B3DE74 /* AccountView */ = {
 			isa = PBXGroup;
 			children = (
+				FAC839262D1A47C200814BCC /* EditNameView */,
+				FAC839182D1A1F8D00814BCC /* Components */,
 				DD3B7A892CE3A01900B3DE74 /* AccountView.swift */,
 				DD3B7A982CE3A5F300B3DE74 /* AccountRouter */,
 			);
@@ -363,7 +361,8 @@
 		E47B3E0E1CA7535879C6B061 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A7DD832913D016BC70B07CC5 /* Pods_TrainStat.framework */,
+				FAB361E22D0E4B3600A24840 /* SwiftUI.framework */,
+				FAB361E02D0E4B2C00A24840 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -375,15 +374,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD369BDF2CCD35520022331E /* Build configuration list for PBXNativeTarget "TrainStat" */;
 			buildPhases = (
-				33A9F239B3B076B3505CB55C /* [CP] Check Pods Manifest.lock */,
-				DD369BC72CCD35510022331E /* Sources */,
-				DD369BC82CCD35510022331E /* Frameworks */,
-				DD369BC92CCD35510022331E /* Resources */,
-				DF02CDDFFB02A66B5CCD2F2E /* [CP] Embed Pods Frameworks */,
+				FAFC30382D0E496F00DF2066 /* Sources */,
+				FAB361AB2D0E4A3000A24840 /* Frameworks */,
+				FAB361AC2D0E4A3400A24840 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FAA9D97A2D0E430C00C31BDE /* Managers */,
+				FABBCC652D151EB1002715DC /* AuthView */,
+				FAC839182D1A1F8D00814BCC /* Components */,
+				FAC839262D1A47C200814BCC /* EditNameView */,
 			);
 			name = TrainStat;
 			productName = TrainStat;
@@ -398,7 +401,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					DD369BCA2CCD35510022331E = {
 						CreatedOnToolsVersion = 15.4;
@@ -415,7 +418,8 @@
 			);
 			mainGroup = DD369BC22CCD35510022331E;
 			packageReferences = (
-				DD5E02A82D11DF3600CBB074 /* XCRemoteSwiftPackageReference "ChartView" */,
+				FAA9D99B2D0E453800C31BDE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FAD9BCE42D0E4DFD00F36837 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = DD369BCC2CCD35510022331E /* Products */;
 			projectDirPath = "";
@@ -427,110 +431,63 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		DD369BC92CCD35510022331E /* Resources */ = {
+		FAB361AC2D0E4A3400A24840 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD369BD82CCD35520022331E /* Assets.xcassets in Resources */,
-				DD369BDB2CCD35520022331E /* Base in Resources */,
+				FAB361E62D0E4B6200A24840 /* LaunchScreen.storyboard in Resources */,
+				FAC839132D1A0FF300814BCC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		33A9F239B3B076B3505CB55C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TrainStat-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DF02CDDFFB02A66B5CCD2F2E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TrainStat/Pods-TrainStat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TrainStat/Pods-TrainStat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TrainStat/Pods-TrainStat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		DD369BC72CCD35510022331E /* Sources */ = {
+		FAFC30382D0E496F00DF2066 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD3B7A7E2CE273DD00B3DE74 /* Extensions.swift in Sources */,
-				DD3B7A922CE3A40C00B3DE74 /* HomeRouter.swift in Sources */,
-				DD6A96DC2D09A7B700F49D24 /* GeneralStatisticsView.swift in Sources */,
-				DD3B7A9A2CE3A64300B3DE74 /* WorkoutRouter.swift in Sources */,
-				DD3B7AA02CE3A6B400B3DE74 /* AccountRouterView.swift in Sources */,
-				DD3F24F52CEE7D24009E90D1 /* CoreDataModel.xcdatamodeld in Sources */,
-				DD3F24EA2CEE7C2B009E90D1 /* ExerciseModel.swift in Sources */,
-				DD3F24F02CEE7C8E009E90D1 /* SetModel.swift in Sources */,
-				DD5E02B02D12AC8F00CBB074 /* OneExerciseStatisticsViewModel.swift in Sources */,
-				DD3F250A2CEE7F99009E90D1 /* MuscleGroupsView.swift in Sources */,
-				DD369BD32CCD35510022331E /* ViewController.swift in Sources */,
-				DD369BCF2CCD35510022331E /* AppDelegate.swift in Sources */,
-				DD3B7A8E2CE3A03A00B3DE74 /* HomeView.swift in Sources */,
-				DD5E02AD2D12255700CBB074 /* OneExerciseStatisticsView.swift in Sources */,
-				DD369BD12CCD35510022331E /* SceneDelegate.swift in Sources */,
-				DD3B7A8C2CE3A02F00B3DE74 /* WorkoutView.swift in Sources */,
-				DD3F24FD2CEE7E5F009E90D1 /* WorkoutEntity+CoreDataClass.swift in Sources */,
-				DD3F25182CEE802F009E90D1 /* CustomRoundedRectangle.swift in Sources */,
-				DD3F25192CEE802F009E90D1 /* StandartHeaderText.swift in Sources */,
-				DD3F24FE2CEE7E5F009E90D1 /* ExerciseEntity+CoreDataProperties.swift in Sources */,
-				DD3F25042CEE7E89009E90D1 /* CoreDataManager.swift in Sources */,
-				DD3F24FF2CEE7E5F009E90D1 /* SetEntity+CoreDataProperties.swift in Sources */,
-				DD3F25002CEE7E5F009E90D1 /* WorkoutEntity+CoreDataProperties.swift in Sources */,
-				DD6A96DE2D09A7C400F49D24 /* ExerciseStatisticsView.swift in Sources */,
-				DD3F25012CEE7E5F009E90D1 /* ExerciseEntity+CoreDataClass.swift in Sources */,
-				DD3F25022CEE7E5F009E90D1 /* SetEntity+CoreDataClass.swift in Sources */,
-				DD3B7A8A2CE3A01900B3DE74 /* AccountView.swift in Sources */,
-				DD6A96E22D0AED9400F49D24 /* GeneralStatisticsViewModel.swift in Sources */,
-				DD3B7A942CE3A47100B3DE74 /* HomeRouterView.swift in Sources */,
-				DD3F250D2CEE7FC6009E90D1 /* AddWorkoutRouter.swift in Sources */,
-				DD3B7A7C2CE273CD00B3DE74 /* Variables.swift in Sources */,
-				DD6A96E52D0B25CC00F49D24 /* MainView.swift in Sources */,
-				DD6A96DA2D09A78F00F49D24 /* AchievementsView.swift in Sources */,
-				DD3B7A9C2CE3A66A00B3DE74 /* WorkoutRouterView.swift in Sources */,
-				DD3B7AA22CE3A71100B3DE74 /* StatisticsRouter.swift in Sources */,
-				DD3B7A9E2CE3A69C00B3DE74 /* AccountRouter.swift in Sources */,
-				DD3B7A902CE3A04500B3DE74 /* StatisticsView.swift in Sources */,
-				DD3F25112CEE7FEA009E90D1 /* AddWorkoutRouterView.swift in Sources */,
-				DD3F24EE2CEE7C6F009E90D1 /* WorkoutModel.swift in Sources */,
-				DD3B7A822CE39F1100B3DE74 /* MainTabView.swift in Sources */,
-				DD3F25062CEE7F2F009E90D1 /* WorkoutViewModel.swift in Sources */,
-				DD3F250F2CEE7FD9009E90D1 /* ExerciseListView.swift in Sources */,
-				DD3B7AA42CE3A71D00B3DE74 /* StatisticsRouterView.swift in Sources */,
-				DD3F24F22CEE7CB2009E90D1 /* SpecificExerciseModel.swift in Sources */,
-				DD3B7A882CE39FD800B3DE74 /* CustomTabView.swift in Sources */,
-				DD3B7A7C2CE273CD00B3DE74 /* Variables.swift in Sources */,
+				FAB361AF2D0E4A9300A24840 /* ExerciseModel.swift in Sources */,
+				FAB361B02D0E4A9300A24840 /* WorkoutModel.swift in Sources */,
+				FAB361B12D0E4A9300A24840 /* SetModel.swift in Sources */,
+				FAB361B22D0E4A9300A24840 /* SpecificExerciseModel.swift in Sources */,
+				FAB361B32D0E4A9300A24840 /* ExerciseEntity+CoreDataClass.swift in Sources */,
+				FAB361B42D0E4A9300A24840 /* ExerciseEntity+CoreDataProperties.swift in Sources */,
+				FAB361B52D0E4A9300A24840 /* SetEntity+CoreDataClass.swift in Sources */,
+				FAB361B62D0E4A9300A24840 /* SetEntity+CoreDataProperties.swift in Sources */,
+				FAB361B72D0E4A9300A24840 /* WorkoutEntity+CoreDataClass.swift in Sources */,
+				FAB361B82D0E4A9300A24840 /* WorkoutEntity+CoreDataProperties.swift in Sources */,
+				FAB361B92D0E4A9300A24840 /* CoreDataModel.xcdatamodeld in Sources */,
+				FAB361BA2D0E4A9300A24840 /* CoreDataManager.swift in Sources */,
+				FAB361BB2D0E4A9300A24840 /* StatisticsView.swift in Sources */,
+				FAB361BC2D0E4A9300A24840 /* AchievementsView.swift in Sources */,
+				FAB361BD2D0E4A9300A24840 /* GeneralStatisticsView.swift in Sources */,
+				FAB361BE2D0E4A9300A24840 /* ExerciseStatisticsView.swift in Sources */,
+				FAB361BF2D0E4A9300A24840 /* StatisticsRouter.swift in Sources */,
+				FAB361C02D0E4A9300A24840 /* StatisticsRouterView.swift in Sources */,
+				FAB361C12D0E4A9300A24840 /* HomeView.swift in Sources */,
+				FAB361C22D0E4A9300A24840 /* HomeRouter.swift in Sources */,
+				FAB361C32D0E4A9300A24840 /* HomeRouterView.swift in Sources */,
+				FAB361C42D0E4A9300A24840 /* WorkoutView.swift in Sources */,
+				FAB361C52D0E4A9300A24840 /* WorkoutViewModel.swift in Sources */,
+				FAB361C62D0E4A9300A24840 /* MuscleGroupsView.swift in Sources */,
+				FAB361C72D0E4A9300A24840 /* AddWorkoutRouter.swift in Sources */,
+				FAB361C82D0E4A9300A24840 /* ExerciseListView.swift in Sources */,
+				FAB361C92D0E4A9300A24840 /* AddWorkoutRouterView.swift in Sources */,
+				FAB361CA2D0E4A9300A24840 /* WorkoutRouter.swift in Sources */,
+				FAB361CB2D0E4A9300A24840 /* WorkoutRouterView.swift in Sources */,
+				FAB361CC2D0E4A9300A24840 /* AccountView.swift in Sources */,
+				FAB361CD2D0E4A9300A24840 /* AccountRouter.swift in Sources */,
+				FAB361CE2D0E4A9300A24840 /* AccountRouterView.swift in Sources */,
+				FAB361CF2D0E4A9300A24840 /* MainTabView.swift in Sources */,
+				FAB361D02D0E4A9300A24840 /* CustomTabView.swift in Sources */,
+				FAB361D12D0E4A9300A24840 /* CustomRoundedRectangle.swift in Sources */,
+				FAB361D22D0E4A9300A24840 /* StandartHeaderText.swift in Sources */,
+				FAB361D32D0E4A9300A24840 /* Variables.swift in Sources */,
+				FAB361D42D0E4A9300A24840 /* Extensions.swift in Sources */,
+				FAB361D52D0E4A9300A24840 /* AppDelegate.swift in Sources */,
+				FAB361D62D0E4A9300A24840 /* SceneDelegate.swift in Sources */,
+				FAB361D72D0E4A9300A24840 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,7 +626,6 @@
 		};
 		DD369BE02CCD35520022331E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37CB1DFF58D50F949428E6CA /* Pods-TrainStat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -702,7 +658,6 @@
 		};
 		DD369BE12CCD35520022331E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B39E688E2DE8B45694F2E376 /* Pods-TrainStat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -757,21 +712,34 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DD5E02A82D11DF3600CBB074 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+		FAA9D99B2D0E453800C31BDE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.5;
+				minimumVersion = 11.6.0;
+			};
+		};
+		FAD9BCE42D0E4DFD00F36837 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DD5E02A92D11DF3600CBB074 /* SwiftUICharts */ = {
+		FAC839162D1A15D500814BCC /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DD5E02A82D11DF3600CBB074 /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
+			package = FAA9D99B2D0E453800C31BDE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FAD9BCE52D0E4DFD00F36837 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAD9BCE42D0E4DFD00F36837 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

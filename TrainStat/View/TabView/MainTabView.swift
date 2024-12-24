@@ -15,28 +15,40 @@ struct MainTabView: View {
     
     @State private var tabSelection: Int = 2
     
+    @StateObject var authManager: AuthManager
+    
+    init() {
+        let authManager = AuthManager()
+        _authManager = StateObject(wrappedValue: authManager)
+    }
+    
     var body: some View {
-        TabView(selection: $tabSelection) {
-            StatisticsRouterView {
-                StatisticsView()
+        if authManager.authState != .signedOut {
+            TabView(selection: $tabSelection) {
+                StatisticsRouterView {
+                    StatisticsView()
+                }
+                    .tag(1)
+                HomeRouterView {
+                    HomeView()
+                }
+                    .tag(2)
+                WorkoutRouterView {
+                    WorkoutView()
+                }
+                    .tag(3)
+                AccountRouterView {
+                    AccountView()
+                        .environmentObject(authManager)
+                }
+                    .tag(4)
             }
-                .tag(1)
-            HomeRouterView {
-                HomeView()
+            .overlay(alignment: .bottom) {
+                CustomTabView(tabSelection: $tabSelection)
+                    .padding(.horizontal, 50)
             }
-                .tag(2)
-            WorkoutRouterView {
-                WorkoutView()
-            }
-                .tag(3)
-            AccountRouterView {
-                AccountView()
-            }
-                .tag(4)
-        }
-        .overlay(alignment: .bottom) {
-            CustomTabView(tabSelection: $tabSelection)
-                .padding(.horizontal, 50)
+        } else {
+            AuthView().environmentObject(authManager)
         }
     }
 }
