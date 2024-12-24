@@ -7,81 +7,81 @@
 
 import SwiftUI
 
-// todo bueeeeee
-let userAchievements: [(title: String, isAchieved: Bool)] = [
-    ("your first workout", true),
-    ("do 5 workouts", false),
-    ("do 10 workouts", true),
-    ("3 times a week", false)
+
+struct Achievement: Identifiable {
+    let id = UUID()
+    let title: String
+    let isCompleted: Bool
+    let date: Date?
+}
+
+let achievements: [Achievement] = [
+    Achievement(title: "your first workout", isCompleted: true, date: Date()),
+    Achievement(title: "do 5 workouts", isCompleted: false, date: nil),
+    Achievement(title: "do 10 workouts", isCompleted: false, date: nil),
+    Achievement(title: "3 times a week", isCompleted: true, date: Date()),
 ]
 
 struct AchievementsView: View {
     var body: some View {
-        VStack {
-            StandartHeaderText(headerText: "Achivements")
-                .padding(.horizontal, 24)
-            /*
-            ForEach(0..<userAchievements.count / 3 + (userAchievements.count % 3 == 0 ? 0 : 1), id: \.self) { index in
-                HStack(spacing: 20) {
-                    ForEach(0..<3, id: \.self) { innerIndex in
-                        let itemIndex = index * 3 + innerIndex
-                        if itemIndex < userAchievements.count {
-                            AchievementView(title: userAchievements[itemIndex].title,
-                                            isAchieved: userAchievements[itemIndex].isAchieved)
-                            //.frame(maxWidth: .infinity) // Занять всю доступную ширину
-                        }
-                    }
+            VStack {
+                ScrollView {
+                    StandartHeaderText(headerText: "Achivements")
+                        .padding(.horizontal, 24)
+                ForEach(achievements) { achievement in
+                    AchievementRow(title: achievement.title, isAchieved: achievement.isCompleted, date: achievement.date)
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 15)
                 }
-                .padding()
-                .frame(maxWidth: .infinity)
-            } */
-                
-            
-            HStack(spacing: 20) {
-                AchievementView(achievementTitle: "your first workout", isAchieved: true)
-                AchievementView(achievementTitle: "do 5 workouts", isAchieved: true)
-                AchievementView(achievementTitle: "do 10 workouts", isAchieved: false)
-            }
-            .padding()
-            .frame(maxWidth: .infinity)
-            HStack(spacing: 20) {
-                AchievementView(achievementTitle: "3 times a week", isAchieved: false)
                 Spacer()
             }
-            .padding()
-            .frame(maxWidth: .infinity)
-            Spacer()
+            .background(Color.black.ignoresSafeArea())
         }
-        .background(Color.black.ignoresSafeArea())
+        
     }
 }
 
 
-struct AchievementView: View {
-    private var achievementTitle: String
-    private var isAchieved: Bool
-    
-    private let squareSize: CGFloat = 110.0
-    private let spacing: CGFloat = 20.0
-    
-    init(achievementTitle: String, isAchieved: Bool) {
-        self.achievementTitle = achievementTitle
-        self.isAchieved = isAchieved
-    }
+struct AchievementRow: View {
+    let title: String
+    let isAchieved: Bool
+    let date: Date?
     
     var body: some View {
-        VStack(spacing: spacing) {
-            Image(systemName: isAchieved ? "checkmark.square.fill" : "square")
+        HStack {
+            Image(systemName: isAchieved ? "medal.fill" : "medal")
                 .resizable()
-                .frame(width: squareSize, height: squareSize)
-                .foregroundColor(isAchieved ? yellowColor : .gray)
-            Text(achievementTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
+                .frame(width: 50, height: 60)
+                .foregroundColor(isAchieved ? yellowColor : gray3)
+            
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                if let date = date {
+                    Text("Done: \(dateFormatter.string(from: date))")
+                        .font(.subheadline)
+                        .foregroundColor(.white)
+                } else {
+                    Text("To be done")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+            }
+            .padding(.leading, 10)
+            Spacer()
         }
+        .padding()
+        .background(isAchieved ? gray2 : gray5)
+        .cornerRadius(15)
     }
 }
+
+let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .short
+    return formatter
+}()
 
 #Preview {
     AchievementsView()
