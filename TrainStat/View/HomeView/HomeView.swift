@@ -257,8 +257,10 @@ private enum Constant {
     static let buttonFontSize: CGFloat = 30
 }
 
+// MARK: - HomeView SUI
+
 struct HomeView: View {
-    @State private var forSheet: Bool = false
+   @State private var forSheet: Bool = false
     @State private var selectedDates: Set<Date> = []
     @State private var selectedMonth = Calendar.current.component(.month, from: Date())
     @State private var selectedYear = Calendar.current.component(.year, from: Date())
@@ -409,9 +411,13 @@ struct HomeView: View {
         }
     }
     
+    // MARK: - ButtonSection
+    
     private var buttonsSection: some View {
         VStack(spacing: Constant.elementSpacing) {
-            Button(action: { print("Start exercise tapped") }) {
+            Button(action: {
+                print("Start exercise tapped")
+            }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: Constant.cornerRadius)
                         .frame(height: Constant.startExerciseButtonHeight)
@@ -513,7 +519,7 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-}
+//#Preview {
+//    HomeView()
+//}
 

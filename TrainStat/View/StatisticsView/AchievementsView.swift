@@ -16,10 +16,10 @@ struct Achievement: Identifiable {
 }
 
 let achievements: [Achievement] = [
-    Achievement(title: "your first workout", isCompleted: true, date: Date()),
-    Achievement(title: "do 5 workouts", isCompleted: false, date: nil),
-    Achievement(title: "do 10 workouts", isCompleted: false, date: nil),
-    Achievement(title: "3 times a week", isCompleted: true, date: Date()),
+    Achievement(title: "Your first workout", isCompleted: true, date: Date()),
+    Achievement(title: "Do 5 workouts", isCompleted: false, date: nil),
+    Achievement(title: "Do 10 workouts", isCompleted: false, date: nil),
+    Achievement(title: "Workout 3 times a week", isCompleted: true, date: Date()),
 ]
 
 struct AchievementsView: View {
