@@ -234,7 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				DD3B7A8F2CE3A04500B3DE74 /* StatisticsView.swift */,
-				DD6A96D92D09A78F00F49D24 /* AchievementsView.swift */,
+				DD7714392D1B0C50003962AF /* Achievments */,
 				DD5E02AB2D1224CC00CBB074 /* GeneralStatistics */,
 				DD5E02AE2D12256100CBB074 /* ExerciseStatistics */,
 				DD3B7A962CE3A58800B3DE74 /* StatisticsRouter */,
@@ -358,6 +358,14 @@
 				DD6A96E42D0B25CC00F49D24 /* MainView.swift */,
 			);
 			path = MainView;
+			sourceTree = "<group>";
+		};
+		DD7714392D1B0C50003962AF /* Achievments */ = {
+			isa = PBXGroup;
+			children = (
+				DD6A96D92D09A78F00F49D24 /* AchievementsView.swift */,
+			);
+			path = Achievments;
 			sourceTree = "<group>";
 		};
 		E47B3E0E1CA7535879C6B061 /* Frameworks */ = {

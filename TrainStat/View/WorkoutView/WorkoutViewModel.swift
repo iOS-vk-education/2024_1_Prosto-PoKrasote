@@ -12,21 +12,18 @@ class WorkoutViewModel: ObservableObject {
     private let coreDataManager = CoreDataManager.shared
     
     @Published var timeString: String = "00:00"
+    @Published var setTimeString: String = "00:00"
+    
     @Published var isSheetShowing: Bool = false
     @Published var workoutResultScreen: Bool = false
     
     private var timer: Timer?
-    private var totalSeconds: Int = 0
+    private var startTime: Date?
     
-    func startWorkout() {
-        showSheet()
-        startTimer()
-    }
+    private var setTimer: Timer?
+    private var setStartTime: Date?
     
     func plusButtonTapped() {
-        if timeString == "00:00" {
-            startTimer()
-        }
         showSheet()
     }
     
@@ -66,35 +63,47 @@ class WorkoutViewModel: ObservableObject {
         print(workoutModel.exersises)
     }
     
-    func addSet(_ exercise: ExerciseModel) {
-        if let index = workoutModel.exersises.firstIndex(where: {$0.id == exercise.id}) {
-            workoutModel.exersises[index].sets.append(SetModel(index: Int16(workoutModel.exersises[index].sets.count)))
+    func checkTimer() {
+        if startTime == nil {
+            startTimer()
         }
     }
     
-    func saveSet(_ exercise: ExerciseModel, _ set: SetModel, weight: Double?, reps: Int?) {
-        if let index = workoutModel.exersises.firstIndex(where: {$0.id == exercise.id}) {
+    func addSet(_ exercise: ExerciseModel) {
+        if let index = workoutModel.exersises.firstIndex(where: { $0.id == exercise.id }) {
+            if workoutModel.exersises[index].sets.count != 0 {
+                workoutModel.exersises[index].sets.append(SetModel(index: Int16(workoutModel.exersises[index].sets.count),
+                                                                   weight: workoutModel.exersises[index].sets[workoutModel.exersises[index].sets.count - 1].weight,
+                                                                   repeats: workoutModel.exersises[index].sets[workoutModel.exersises[index].sets.count - 1].repeats))
+            } else {
+                workoutModel.exersises[index].sets.append(SetModel(index: Int16(workoutModel.exersises[index].sets.count)))
+            }
+        }
+    }
+    
+    func saveSet(_ exercise: ExerciseModel, _ setIndex: Int, weight: Double?, reps: Int?) {
+        if let index = workoutModel.exersises.firstIndex(where: { $0.id == exercise.id }) {
             if let weight {
-                workoutModel.exersises[index].sets[Int(set.index)].weight = weight
+                workoutModel.exersises[index].sets[setIndex].weight = weight
             }
             if let reps {
-                workoutModel.exersises[index].sets[Int(set.index)].repeats = Int16(reps)
+                workoutModel.exersises[index].sets[setIndex].repeats = Int16(reps)
             }
         }
     }
     
     func doneSet(_ exercise: ExerciseModel, _ set: SetModel) {
-        if let index = workoutModel.exersises.firstIndex(where: {$0.id == exercise.id}) {
+        if let index = workoutModel.exersises.firstIndex(where: { $0.id == exercise.id }) {
             workoutModel.exersises[index].sets[Int(set.index)].isDone = true
         }
     }
     
     private func startTimer() {
         stopTimer()
-        totalSeconds = 0
-        timeString = formatTimeForTimer(totalSeconds)
+        startTime = Date()
+        updateTimerString() 
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            self?.tickTimer()
+            self?.updateTimerString()
         }
     }
     
@@ -106,13 +115,36 @@ class WorkoutViewModel: ObservableObject {
     private func stopTimer() {
         timer?.invalidate()
         timer = nil
-        totalSeconds = 0
-        timeString = formatTimeForTimer(totalSeconds)
+        startTime = nil
+        timeString = "00:00"
     }
     
-    private func tickTimer() {
-        totalSeconds += 1
-        timeString = formatTimeForTimer(totalSeconds)
+    private func updateTimerString() {
+        guard let startTime = startTime else { return }
+        let elapsedTime = Int(Date().timeIntervalSince(startTime))
+        timeString = formatTimeForTimer(elapsedTime)
+    }
+    
+    func startSetTimer() {
+        stopSetTimer()
+        setStartTime = Date()
+        updateSetTimerString()
+        setTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            self?.updateSetTimerString()
+        }
+    }
+    
+    func stopSetTimer() {
+        setTimer?.invalidate()
+        setTimer = nil
+        setStartTime = nil
+        setTimeString = "00:00"
+    }
+    
+    private func updateSetTimerString() {
+        guard let setStartTime = setStartTime else { return }
+        let elapsedTime = Int(Date().timeIntervalSince(setStartTime))
+        setTimeString = formatTimeForTimer(elapsedTime)
     }
     
     private func formatTimeForTimer(_ seconds: Int) -> String {
