@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -103,15 +103,7 @@
 		DD6A96DD2D09A7C400F49D24 /* ExerciseStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseStatisticsView.swift; sourceTree = "<group>"; };
 		FAB361E02D0E4B2C00A24840 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FAB361E22D0E4B3600A24840 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		FAC839122D1A0FF300814BCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		FAA9D97A2D0E430C00C31BDE /* Managers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Managers; sourceTree = "<group>"; };
-		FABBCC652D151EB1002715DC /* AuthView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AuthView; sourceTree = "<group>"; };
-		FAC839182D1A1F8D00814BCC /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
-		FAC839262D1A47C200814BCC /* EditNameView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EditNameView; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FAB361AB2D0E4A3000A24840 /* Frameworks */ = {
@@ -148,7 +140,6 @@
 		DD369BCD2CCD35510022331E /* TrainStat */ = {
 			isa = PBXGroup;
 			children = (
-				FAA9D97A2D0E430C00C31BDE /* Managers */,
 				DD3F24EB2CEE7C38009E90D1 /* Data */,
 				DD3B7A7F2CE39EE900B3DE74 /* View */,
 				DD3B7A7A2CE273B200B3DE74 /* Global */,
@@ -158,7 +149,6 @@
 				DD369BD72CCD35520022331E /* Assets.xcassets */,
 				DD369BD92CCD35520022331E /* LaunchScreen.storyboard */,
 				DD369BDC2CCD35520022331E /* Info.plist */,
-				FAC839122D1A0FF300814BCC /* GoogleService-Info.plist */,
 			);
 			path = TrainStat;
 			sourceTree = "<group>";
@@ -176,7 +166,6 @@
 		DD3B7A7F2CE39EE900B3DE74 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FABBCC652D151EB1002715DC /* AuthView */,
 				DD3B7A862CE39FB800B3DE74 /* StatisticsView */,
 				DD3B7A852CE39FB000B3DE74 /* HomeView */,
 				DD3B7A842CE39F4100B3DE74 /* WorkoutView */,
@@ -198,8 +187,6 @@
 		DD3B7A832CE39F3700B3DE74 /* AccountView */ = {
 			isa = PBXGroup;
 			children = (
-				FAC839262D1A47C200814BCC /* EditNameView */,
-				FAC839182D1A1F8D00814BCC /* Components */,
 				DD3B7A892CE3A01900B3DE74 /* AccountView.swift */,
 				DD3B7A982CE3A5F300B3DE74 /* AccountRouter */,
 			);
@@ -352,12 +339,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				FAA9D97A2D0E430C00C31BDE /* Managers */,
-				FABBCC652D151EB1002715DC /* AuthView */,
-				FAC839182D1A1F8D00814BCC /* Components */,
-				FAC839262D1A47C200814BCC /* EditNameView */,
 			);
 			name = TrainStat;
 			productName = TrainStat;
