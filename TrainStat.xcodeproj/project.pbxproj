@@ -39,8 +39,6 @@
 		FAB361CC2D0E4A9300A24840 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A892CE3A01900B3DE74 /* AccountView.swift */; };
 		FAB361CD2D0E4A9300A24840 /* AccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A9D2CE3A69C00B3DE74 /* AccountRouter.swift */; };
 		FAB361CE2D0E4A9300A24840 /* AccountRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A9F2CE3A6B400B3DE74 /* AccountRouterView.swift */; };
-		FAB361CF2D0E4A9300A24840 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A812CE39F1100B3DE74 /* MainTabView.swift */; };
-		FAB361D02D0E4A9300A24840 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A872CE39FD800B3DE74 /* CustomTabView.swift */; };
 		FAB361D12D0E4A9300A24840 /* CustomRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25152CEE802F009E90D1 /* CustomRoundedRectangle.swift */; };
 		FAB361D22D0E4A9300A24840 /* StandartHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F25162CEE802F009E90D1 /* StandartHeaderText.swift */; };
 		FAB361D32D0E4A9300A24840 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B7A7B2CE273CD00B3DE74 /* Variables.swift */; };
@@ -54,6 +52,13 @@
 		FAC839132D1A0FF300814BCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAC839122D1A0FF300814BCC /* GoogleService-Info.plist */; };
 		FAC839172D1A15D500814BCC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FAC839162D1A15D500814BCC /* FirebaseAuth */; };
 		FAD9BCE62D0E4DFD00F36837 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FAD9BCE52D0E4DFD00F36837 /* SnapKit */; };
+		FADDA9712D1CD5600053565B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDA96F2D1CD5600053565B /* MainView.swift */; };
+		FADDA9752D1CD57F0053565B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDA9732D1CD57F0053565B /* MainTabView.swift */; };
+		FADDA9762D1CD57F0053565B /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDA9722D1CD57F0053565B /* CustomTabView.swift */; };
+		FADDA97C2D1CD75D0053565B /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = FADDA97B2D1CD75D0053565B /* SwiftUICharts */; };
+		FADDA97E2D1CD7BB0053565B /* GeneralStatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDA97D2D1CD7BB0053565B /* GeneralStatisticsViewModel.swift */; };
+		FADDA97F2D1CD8020053565B /* OneExerciseStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E02AC2D12255700CBB074 /* OneExerciseStatisticsView.swift */; };
+		FADDA9802D1CD8100053565B /* OneExerciseStatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E02AF2D12AC8F00CBB074 /* OneExerciseStatisticsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,8 +71,6 @@
 		DD369BDC2CCD35520022331E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD3B7A7B2CE273CD00B3DE74 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		DD3B7A7D2CE273DD00B3DE74 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		DD3B7A812CE39F1100B3DE74 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		DD3B7A872CE39FD800B3DE74 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		DD3B7A892CE3A01900B3DE74 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		DD3B7A8B2CE3A02F00B3DE74 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		DD3B7A8D2CE3A03A00B3DE74 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -107,6 +110,11 @@
 		FAB361E02D0E4B2C00A24840 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FAB361E22D0E4B3600A24840 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		FAC839122D1A0FF300814BCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FADDA96F2D1CD5600053565B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		FADDA9722D1CD57F0053565B /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
+		FADDA9732D1CD57F0053565B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		FADDA9772D1CD6300053565B /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
+		FADDA97D2D1CD7BB0053565B /* GeneralStatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralStatisticsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -125,6 +133,7 @@
 				FAC839172D1A15D500814BCC /* FirebaseAuth in Frameworks */,
 				FAB361E12D0E4B2C00A24840 /* UIKit.framework in Frameworks */,
 				FAD9BCE62D0E4DFD00F36837 /* SnapKit in Frameworks */,
+				FADDA97C2D1CD75D0053565B /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +188,8 @@
 		DD3B7A7F2CE39EE900B3DE74 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FADDA9742D1CD57F0053565B /* TabView */,
+				FADDA9702D1CD5600053565B /* MainView */,
 				FABBCC652D151EB1002715DC /* AuthView */,
 				DD3B7A862CE39FB800B3DE74 /* StatisticsView */,
 				DD3B7A852CE39FB000B3DE74 /* HomeView */,
@@ -186,15 +197,6 @@
 				DD3B7A832CE39F3700B3DE74 /* AccountView */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		DD3B7A802CE39EF400B3DE74 /* TabView */ = {
-			isa = PBXGroup;
-			children = (
-				DD3B7A812CE39F1100B3DE74 /* MainTabView.swift */,
-				DD3B7A872CE39FD800B3DE74 /* CustomTabView.swift */,
-			);
-			path = TabView;
 			sourceTree = "<group>";
 		};
 		DD3B7A832CE39F3700B3DE74 /* AccountView */ = {
@@ -334,8 +336,8 @@
 		DD5E02AB2D1224CC00CBB074 /* GeneralStatistics */ = {
 			isa = PBXGroup;
 			children = (
+				FADDA97D2D1CD7BB0053565B /* GeneralStatisticsViewModel.swift */,
 				DD6A96DB2D09A7B700F49D24 /* GeneralStatisticsView.swift */,
-				DD6A96E12D0AED9400F49D24 /* GeneralStatisticsViewModel.swift */,
 			);
 			path = GeneralStatistics;
 			sourceTree = "<group>";
@@ -350,21 +352,31 @@
 			path = ExerciseStatistics;
 			sourceTree = "<group>";
 		};
-		DD6A96E32D0B25BE00F49D24 /* MainView */ = {
-			isa = PBXGroup;
-			children = (
-				DD6A96E42D0B25CC00F49D24 /* MainView.swift */,
-			);
-			path = MainView;
-			sourceTree = "<group>";
-		};
 		E47B3E0E1CA7535879C6B061 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FADDA9772D1CD6300053565B /* Charts.framework */,
 				FAB361E22D0E4B3600A24840 /* SwiftUI.framework */,
 				FAB361E02D0E4B2C00A24840 /* UIKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FADDA9702D1CD5600053565B /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				FADDA96F2D1CD5600053565B /* MainView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		FADDA9742D1CD57F0053565B /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				FADDA9722D1CD57F0053565B /* CustomTabView.swift */,
+				FADDA9732D1CD57F0053565B /* MainTabView.swift */,
+			);
+			path = TabView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +432,7 @@
 			packageReferences = (
 				FAA9D99B2D0E453800C31BDE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				FAD9BCE42D0E4DFD00F36837 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FADDA97A2D1CD75D0053565B /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = DD369BCC2CCD35510022331E /* Products */;
 			projectDirPath = "";
@@ -447,6 +460,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADDA9802D1CD8100053565B /* OneExerciseStatisticsViewModel.swift in Sources */,
+				FADDA97F2D1CD8020053565B /* OneExerciseStatisticsView.swift in Sources */,
 				FAB361AF2D0E4A9300A24840 /* ExerciseModel.swift in Sources */,
 				FAB361B02D0E4A9300A24840 /* WorkoutModel.swift in Sources */,
 				FAB361B12D0E4A9300A24840 /* SetModel.swift in Sources */,
@@ -472,15 +487,17 @@
 				FAB361C52D0E4A9300A24840 /* WorkoutViewModel.swift in Sources */,
 				FAB361C62D0E4A9300A24840 /* MuscleGroupsView.swift in Sources */,
 				FAB361C72D0E4A9300A24840 /* AddWorkoutRouter.swift in Sources */,
+				FADDA97E2D1CD7BB0053565B /* GeneralStatisticsViewModel.swift in Sources */,
 				FAB361C82D0E4A9300A24840 /* ExerciseListView.swift in Sources */,
 				FAB361C92D0E4A9300A24840 /* AddWorkoutRouterView.swift in Sources */,
 				FAB361CA2D0E4A9300A24840 /* WorkoutRouter.swift in Sources */,
 				FAB361CB2D0E4A9300A24840 /* WorkoutRouterView.swift in Sources */,
+				FADDA9712D1CD5600053565B /* MainView.swift in Sources */,
 				FAB361CC2D0E4A9300A24840 /* AccountView.swift in Sources */,
 				FAB361CD2D0E4A9300A24840 /* AccountRouter.swift in Sources */,
 				FAB361CE2D0E4A9300A24840 /* AccountRouterView.swift in Sources */,
-				FAB361CF2D0E4A9300A24840 /* MainTabView.swift in Sources */,
-				FAB361D02D0E4A9300A24840 /* CustomTabView.swift in Sources */,
+				FADDA9752D1CD57F0053565B /* MainTabView.swift in Sources */,
+				FADDA9762D1CD57F0053565B /* CustomTabView.swift in Sources */,
 				FAB361D12D0E4A9300A24840 /* CustomRoundedRectangle.swift in Sources */,
 				FAB361D22D0E4A9300A24840 /* StandartHeaderText.swift in Sources */,
 				FAB361D32D0E4A9300A24840 /* Variables.swift in Sources */,
@@ -728,6 +745,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		FADDA97A2D1CD75D0053565B /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -740,6 +765,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FAD9BCE42D0E4DFD00F36837 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		FADDA97B2D1CD75D0053565B /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FADDA97A2D1CD75D0053565B /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 

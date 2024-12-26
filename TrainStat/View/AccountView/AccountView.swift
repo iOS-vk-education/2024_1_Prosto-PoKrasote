@@ -28,6 +28,7 @@ struct AccountView: View {
                 .padding(.top, 20)
                 .padding(.bottom, 50)
             }
+            .padding(.bottom, 50)
         }
         .background(Color.black.ignoresSafeArea())
         .alert(isPresented: $showingAlert) {
