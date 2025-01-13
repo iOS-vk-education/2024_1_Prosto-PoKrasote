@@ -1,17 +1,18 @@
-import UIKit
-import SnapKit
 import SwiftUI
+import SnapKit
+import CoreData
 
 struct Training {
     let date: String
-    let timeInMinutes: Int
+    let timeInMinutes: String
     let intensity: Int
 }
 
 final class RecentTrainingsViewController: UIViewController {
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Recent trainings"
+        label.text = "Recent Trainings"
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         label.textColor = UIColor.systemYellow
         return label
@@ -38,34 +39,14 @@ final class RecentTrainingsViewController: UIViewController {
         
         view.addSubview(titleLabel)
         view.addSubview(tableView)
+        
         setupLayout()
         loadTrainingsFromCoreData()
     }
-
-    private func loadTrainingsFromCoreData() {
-        let manager = CoreDataManager.shared
-        let workoutEntities = manager.fetchWorkouts()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        
-        self.trainings = workoutEntities.map { workout in
-            let dateString: String
-            if let date = workout.date {
-                dateString = formatter.string(from: date)
-            } else {
-                dateString = "No date"
-            }
-            
-            let timeInMinutes = Int(workout.time ?? "0") ?? 0
-            let intensityValue = Int(workout.intensivity)
-            
-            return Training(
-                date: dateString,
-                timeInMinutes: timeInMinutes,
-                intensity: intensityValue
-            )
-        }
-        tableView.reloadData()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadTrainingsFromCoreData()
     }
     
     private func setupLayout() {
@@ -74,25 +55,48 @@ final class RecentTrainingsViewController: UIViewController {
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().inset(24)
         }
+        
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(16)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
-
-
-    private func fetchLastWorkoutDateFromCoreData() -> Date? {
-        let manager = CoreDataManager.shared
-        let workouts = manager.fetchWorkouts()
-        let sorted = workouts.sorted { ($0.date ?? .distantPast) > ($1.date ?? .distantPast) }
-        return sorted.first?.date
+    private func loadTrainingsFromCoreData() {
+        let workouts = CoreDataManager.shared.fetchWorkouts()
+        
+        let formatter = DateFormatter()
+        formatter.locale = .current
+        formatter.timeZone = .current
+        formatter.dateFormat = "dd.MM.yyyy"
+        
+        trainings = workouts.map { workout in
+            let dateString: String
+            if let date = workout.date {
+                dateString = formatter.string(from: date)
+            } else {
+                dateString = "No date"
+            }
+            let timeString = workout.time ?? "00:00"
+            let intensityValue = Int(workout.intensivity)
+            
+            return Training(
+                date: dateString,
+                timeInMinutes: timeString,
+                intensity: intensityValue
+            )
+        }
+        
+        tableView.reloadData()
     }
+
+
 }
 
 extension RecentTrainingsViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         return trainings.count
     }
     
@@ -104,10 +108,7 @@ extension RecentTrainingsViewController: UITableViewDataSource, UITableViewDeleg
         ) as? RecentTrainingCell else {
             return UITableViewCell()
         }
-        
-        let training = trainings[indexPath.row]
-        cell.configure(with: training)
-        
+        cell.configure(with: trainings[indexPath.row])
         return cell
     }
     
@@ -174,7 +175,6 @@ final class RecentTrainingCell: UITableViewCell {
         
         contentView.addSubview(containerView)
         containerView.addSubview(dateLabel)
-        
         containerView.addSubview(firstDivider)
         containerView.addSubview(timeLabel)
         containerView.addSubview(secondDivider)
@@ -200,35 +200,31 @@ final class RecentTrainingCell: UITableViewCell {
         
         firstDivider.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(1)
         }
         
         timeLabel.snp.makeConstraints { make in
             make.top.equalTo(firstDivider.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
         
         secondDivider.snp.makeConstraints { make in
             make.top.equalTo(timeLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(1)
         }
         
         intensityLabel.snp.makeConstraints { make in
             make.top.equalTo(secondDivider.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(12)
         }
     }
     
     func configure(with training: Training) {
         dateLabel.text = "Date :  \(training.date)"
-        timeLabel.text = "Time (min) :  \(training.timeInMinutes)"
+        timeLabel.text = "Time :  \(training.timeInMinutes)"
         intensityLabel.text = "Intensity :  \(training.intensity)"
     }
 }
@@ -240,21 +236,6 @@ struct RecentTrainingsViewControllerRepresentable: UIViewControllerRepresentable
     
     func updateUIViewController(_ uiViewController: RecentTrainingsViewController, context: Context) {
     }
-}
-
-
-private enum Constant {
-    static let bigCircleSize: CGFloat = 33
-    static let smallCircleSize: CGFloat = 31
-    static let startExerciseButtonHeight: CGFloat = 120
-    static let recentTrainingsButtonHeight: CGFloat = 69
-    static let elementSpacing: CGFloat = 15
-    static let horizontalPadding: CGFloat = 24
-    static let calendarHeight: CGFloat = 293
-    static let pickerSize: CGSize = CGSize(width: 120, height: 100)
-    static let cornerRadius: CGFloat = 20
-    static let overlayPadding: CGFloat = 16
-    static let buttonFontSize: CGFloat = 30
 }
 
 struct HomeView: View {
@@ -272,65 +253,54 @@ struct HomeView: View {
     }()
     
     private let availableYears = Array(2020...2030)
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: Constant.elementSpacing), count: 7)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 15), count: 7)
     private var months: [String] {
         calendar.monthSymbols
     }
     
     var body: some View {
         VStack {
-            header
-                .padding(.horizontal, Constant.horizontalPadding)
-                .padding(.bottom, 7)
-            
-            calendarSection
-                .padding(.horizontal, Constant.horizontalPadding)
-                .padding(.bottom, 30)
-            
-            buttonsSection
-                .padding(.horizontal, Constant.horizontalPadding)
-            
-            Spacer()
-        }
-        .sheet(isPresented: $forSheet) {
-            NavigationView {
-                RecentTrainingsViewControllerRepresentable()
-                    .navigationBarTitleDisplayMode(.inline)
-            }
-            .presentationDetents([.large])
-            .presentationDragIndicator(.visible)
-            .presentationBackground(.black)
-        }
-
-
-        .background(Color.black.ignoresSafeArea())
-        .onAppear {
-            loadSelectedDates()
-        }
-    }
-    
-    private var header: some View {
-        VStack(alignment: .leading, spacing: Constant.elementSpacing) {
             Text("Hey, name!")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .foregroundColor(yellowColor)
+                .foregroundColor(Color.yellow)
+                .padding(.top, 16)
+                .padding(.horizontal, 24)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
-            Text("Ready for action?")
-                .foregroundColor(.white)
+            calendarSection
+                .padding(.horizontal, 24)
+                .padding(.bottom, 30)
+            
+            buttonsSection
+                .padding(.horizontal, 24)
+            
+            Spacer()
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .onAppear { loadSelectedDates() }
+        .sheet(isPresented: $forSheet, onDismiss: {
+                loadSelectedDates()
+            }) {
+                NavigationView {
+                    RecentTrainingsViewControllerRepresentable()
+                        .navigationBarTitleDisplayMode(.inline)
+                }
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+                .presentationBackground(.black)
+            }
+            .background(Color.black.ignoresSafeArea())
     }
     
     private var calendarSection: some View {
-        VStack(alignment: .leading, spacing: Constant.elementSpacing) {
+        VStack(alignment: .leading, spacing: 15) {
             monthYearPicker
                 .padding(.horizontal)
                 .padding(.bottom, 10)
             
-            RoundedRectangle(cornerRadius: Constant.cornerRadius)
-                .frame(height: Constant.calendarHeight)
-                .foregroundColor(systemDarkBlueColor)
+            RoundedRectangle(cornerRadius: 20)
+                .frame(height: 293)
+                .foregroundColor(Color(red: 28/255, green: 40/255, blue: 51/255))
                 .overlay(
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(weekdaySymbolsAlignedToStartOfWeek, id: \.self) { weekday in
@@ -340,18 +310,16 @@ struct HomeView: View {
                                 .fontWeight(.bold)
                                 .frame(maxWidth: .infinity)
                         }
+                        
                         ForEach(Array(generateDays().enumerated()), id: \.offset) { _, day in
                             if let day = day {
                                 calendarDayView(day: day)
-                                    .onTapGesture {
-                                        toggleDaySelection(day: day)
-                                    }
                             } else {
                                 Spacer()
                             }
                         }
                     }
-                    .padding(Constant.overlayPadding)
+                    .padding(16)
                 )
         }
     }
@@ -365,17 +333,17 @@ struct HomeView: View {
             
             HStack(spacing: 10) {
                 Picker("Select Month", selection: $selectedMonth) {
-                    ForEach(1...12, id: \.self) { month in
-                        Text(months[month - 1]).tag(month)
+                    ForEach(1...12, id: \.self) {
+                        Text(months[$0 - 1]).tag($0)
                     }
                 }
                 .pickerStyle(.menu)
                 .frame(width: 125, height: 30)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(systemDarkBlueColor)
+                        .foregroundColor(Color(red: 28/255, green: 40/255, blue: 51/255))
                 )
-                .accentColor(yellowColor)
+                .accentColor(.yellow)
                 
                 Picker("Select Year", selection: $selectedYear) {
                     ForEach(availableYears, id: \.self) { year in
@@ -386,60 +354,50 @@ struct HomeView: View {
                 .frame(width: 85, height: 30)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(systemDarkBlueColor)
+                        .foregroundColor(Color(red: 28/255, green: 40/255, blue: 51/255))
                 )
                 .accentColor(.white)
             }
         }
     }
-    private func calendarDayView(day: Int) -> some View {
-        let isSelected = isDaySelected(day)
-        return ZStack {
-            Circle()
-                .stroke(style: StrokeStyle(lineWidth: 2, dash: isToday(day) ? [8, 8] : []))
-                .frame(width: Constant.bigCircleSize, height: Constant.bigCircleSize)
-                .foregroundColor(yellowColor)
-            Circle()
-                .frame(width: Constant.smallCircleSize, height: Constant.smallCircleSize)
-                .foregroundColor(isSelected ? yellowColor : .black)
-            
-            Text("\(day)")
-                .foregroundColor(isSelected ? .black : .white)
-                .fontWeight(.bold)
-        }
-    }
     
     private var buttonsSection: some View {
-        VStack(spacing: Constant.elementSpacing) {
-            Button(action: { print("Start exercise tapped") }) {
+        VStack(spacing: 15) {
+            Button(action: {
+            }) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: Constant.cornerRadius)
-                        .frame(height: Constant.startExerciseButtonHeight)
-                        .foregroundColor(yellowColor)
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(height: 120)
+                        .foregroundColor(.yellow)
                     Text("Start exercise")
                         .fontWeight(.bold)
-                        .font(.system(size: Constant.buttonFontSize))
+                        .font(.system(size: 30))
                         .foregroundColor(.black)
                 }
             }
             
-            Button(action: { forSheet = true }) {
+            Button(action: {
+                forSheet = true
+            }) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: Constant.cornerRadius)
-                        .frame(height: Constant.recentTrainingsButtonHeight)
-                        .foregroundColor(systemDarkBlueColor)
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(height: 69)
+                        .foregroundColor(Color(red: 28/255, green: 40/255, blue: 51/255))
+                    
                     Text("Recent Trainings")
                         .fontWeight(.bold)
-                        .font(.system(size: Constant.buttonFontSize))
+                        .font(.system(size: 30))
                         .foregroundColor(.white)
                 }
             }
         }
     }
+    
     private func generateDays() -> [Int?] {
         let components = DateComponents(year: selectedYear, month: selectedMonth)
         guard let startOfMonth = calendar.date(from: components),
-              let range = calendar.range(of: .day, in: .month, for: startOfMonth) else {
+              let range = calendar.range(of: .day, in: .month, for: startOfMonth)
+        else {
             return []
         }
         
@@ -454,7 +412,6 @@ struct HomeView: View {
         let today = calendar.dateComponents([.day, .month, .year], from: Date())
         return (today.day == day && today.month == selectedMonth && today.year == selectedYear)
     }
-    
     private var weekdaySymbolsAlignedToStartOfWeek: [String] {
         let symbols = calendar.shortWeekdaySymbols
         let startIndex = calendar.firstWeekday - 1
@@ -465,55 +422,39 @@ struct HomeView: View {
         guard let date = dateFromDay(day) else { return false }
         return selectedDates.contains(date)
     }
-    
     private func dateFromDay(_ day: Int) -> Date? {
         let components = DateComponents(year: selectedYear, month: selectedMonth, day: day)
         return calendar.date(from: components)
     }
     
-    private func toggleDaySelection(day: Int) {
-        guard let date = dateFromDay(day) else { return }
-        if selectedDates.contains(date) {
-            removeWorkout(for: date)
-        } else {
-            saveWorkout(for: date)
-        }
-    }
-    
-    private func saveWorkout(for date: Date) {
-        let manager = CoreDataManager.shared
-        let workout = WorkoutEntity(context: manager.persistentContainer.viewContext)
-        workout.id = UUID()
-        workout.date = date
-        
-        do {
-            try manager.save()
-            selectedDates.insert(date)
-        } catch {
-            print("Failed to save workout: \(error)")
-        }
-    }
-    
-    private func removeWorkout(for date: Date) {
-        let manager = CoreDataManager.shared
-        let workouts = manager.fetchWorkouts().filter {
-            $0.date != nil && Calendar.current.isDate($0.date!, inSameDayAs: date)
-        }
-        for w in workouts {
-            manager.deleteWorkout(w)
-        }
-        selectedDates.remove(date)
-    }
-    
     private func loadSelectedDates() {
-        let manager = CoreDataManager.shared
-        let workouts = manager.fetchWorkouts()
-        let dates = workouts.compactMap { $0.date }
-        self.selectedDates = Set(dates)
+        let workouts = CoreDataManager.shared.fetchWorkouts()
+        let truncatedDates = workouts.compactMap { workout -> Date? in
+            guard let date = workout.date else { return nil }
+            return calendar.startOfDay(for: date)
+        }
+        selectedDates = Set(truncatedDates)
     }
-}
 
-#Preview {
-    HomeView()
+    
+    private func calendarDayView(day: Int) -> some View {
+        let isWorkoutDay = isDaySelected(day)
+        return ZStack {
+            Circle()
+                .stroke(style: StrokeStyle(lineWidth: 2, dash: isToday(day) ? [8, 8] : []))
+                .frame(width: 33, height: 33)
+                .foregroundColor(.yellow)
+            
+            Circle()
+                .frame(width: 31, height: 31)
+                .foregroundColor(isWorkoutDay ? .yellow : .black)
+            
+            Text("\(day)")
+                .foregroundColor(isWorkoutDay ? .black : .white)
+                .fontWeight(.bold)
+        }
+        
+    }
+    
 }
 
