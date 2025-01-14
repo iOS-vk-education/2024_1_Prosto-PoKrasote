@@ -1,6 +1,6 @@
 //
 //  WorkoutEntity+CoreDataClass.swift
-//  
+//  TestTrainStat
 //
 //  Created by Kovalev Gleb on 20.11.2024.
 //

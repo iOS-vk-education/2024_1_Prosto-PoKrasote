@@ -11,26 +11,44 @@ struct WorkoutView: View {
     @StateObject private var viewModel = WorkoutViewModel()
     @State private var selectedExerciseIndex: Int = -1
     
-    @State private var isWeightPickerPresented = false
+    @State private var selectedSetIndex: Int?
+    @State private var isPickersSheetPresented = false
     @State private var pickerWeight: Double = 0
-    @State private var isRepsPickerPresented = false
     @State private var pickerReps: Int = 0
     
+    @State private var showOverlayRectangle = false
+    @State private var overlayRectCG = CGRect.zero
+    
+    @State private var listScreenShowing: Bool = true
+    @State private var currentExerciseIndex: Int?
+    
+    @State private var firstScreenOpacity: Bool = true
+    @State private var firstRecScreenOpacity: Bool = true
+    @State private var secondScreenOpacity: Bool = false
+    @State private var secondRecScreenOpacity: Bool = false
     
     enum ConstantSize {
         static let paddingHorizontal: CGFloat = 20
         static let standartExerciseHeight: CGFloat = 48
         static let standartAdditionalHeight: CGFloat = 28
-        static let scrollViewHeight: CGFloat = 440
+        static let scrollViewHeight: CGFloat = 440 - 48
         static let endTrainingHeight: CGFloat = 70
         static let circleSize: CGFloat = 48
     }
+    
     var body: some View {
         if viewModel.workoutResultScreen {
-            resultView
+            ZStack {
+                Color(.black).ignoresSafeArea()
+                resultView
+            }
         } else {
             ZStack {
                 Color(.black).ignoresSafeArea()
+                    .opacity(firstScreenOpacity ? 1 : 0)
+                
+                overlayRect
+                
                 VStack(spacing: 32) {
                     StandartHeaderText(headerText: "Workout")
                         .padding(.leading, 21)
@@ -43,6 +61,12 @@ struct WorkoutView: View {
                     }
                     .padding(.horizontal, ConstantSize.paddingHorizontal)
                 }
+                    .opacity(firstRecScreenOpacity ? 1 : 0)
+                
+                if currentExerciseIndex != nil {
+                    exerciseInfo
+                        .opacity(secondRecScreenOpacity ? 1 : 0)
+                }
             }
             .sheet(isPresented: $viewModel.isSheetShowing) {
                 AddWorkoutRouterView(content: {
@@ -52,9 +76,327 @@ struct WorkoutView: View {
             }
         }
     }
+}
+
+// MARK: - ListView
+
+extension WorkoutView {
     
-    // MARK: FIX
-    // Fix the UI
+    var timerView : some View {
+        Text(viewModel.timeString)
+            .font(.system(size: 64))
+            .bold()
+            .foregroundStyle(yellowColor)
+            .kerning(2)
+    }
+    
+    var exercisesList: some View {
+        ScrollView {
+            ForEach(Array(viewModel.workoutModel.exersises.enumerated()), id: \.element.id) { index, exercise in
+                GeometryReader { geo in
+                    HStack {
+                        Spacer()
+                        Button {
+                            overlayRectCG = geo.frame(in: .global)
+                            secondScreenOpacity = true
+                            currentExerciseIndex = index
+                            withAnimation(.easeInOut(duration: 0.1)) {
+                                firstRecScreenOpacity = false
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                withAnimation(.easeInOut(duration: 0.5)) {
+                                    listScreenShowing = false
+                                    selectedExerciseIndex = index
+                                }
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                firstScreenOpacity = false
+                                withAnimation {
+                                    secondRecScreenOpacity = true
+                                }
+                                viewModel.startSetTimer()
+                            }
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(gray6)
+                                    .frame(width: 350, height: ConstantSize.standartExerciseHeight)
+                                HStack {
+                                    Text("\(index + 1). \(exercise.exercise.name)")
+                                        .foregroundStyle(.white)
+                                        .padding(.leading, 16)
+                                    Spacer()
+                                }
+                                .frame(width: 350, height: ConstantSize.standartExerciseHeight)
+                            }
+                        }
+                        Spacer()
+                    }
+                }
+                .padding(.top, index == 0 ? 1 : 38)
+            }
+        }
+        .frame(height: ConstantSize.scrollViewHeight)
+    }
+    
+    var plusButton : some View {
+        Circle()
+            .foregroundStyle(yellowColor)
+            .frame(height: ConstantSize.circleSize)
+            .overlay {
+                Image(systemName: "plus")
+                    .foregroundStyle(.black)
+                    .font(.system(size: 24))
+            }
+            .onTapGesture {
+                viewModel.plusButtonTapped()
+            }
+    }
+    
+    var endTrainingButton : some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundStyle(yellowColor)
+                .frame(height: ConstantSize.endTrainingHeight)
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundStyle(systemDarkBlueColor)
+                .frame(height: ConstantSize.endTrainingHeight - 4)
+                .padding(2)
+            Text("End workout")
+                .foregroundStyle(.white)
+                .font(.system(size: 24))
+                .fontWeight(.bold)
+        }
+        .opacity(viewModel.timeString == "00:00" ? 0 : 1)
+        .animation(.easeInOut(duration: 0.3), value: viewModel.timeString == "00:00")
+        .onTapGesture {
+            secondScreenOpacity = false
+            viewModel.endWorkoutButtonTapped()
+        }
+    }
+}
+
+// MARK: - Transition Between List And Result Rectangle
+
+extension WorkoutView {
+    var overlayRect: some View {
+        RoundedRectangle(cornerRadius: 12)
+            .foregroundStyle(gray6)
+            .frame(width: listScreenShowing ? 350 : UIScreen.main.bounds.width + 900,
+                   height: listScreenShowing ? ConstantSize.standartExerciseHeight : UIScreen.main.bounds.height + 900)
+            .position(x: overlayRectCG.origin.x + overlayRectCG.width / 2, y: overlayRectCG.origin.y - 3.75 * overlayRectCG.height)
+            .opacity(secondScreenOpacity ? 1 : 0)
+    }
+}
+
+// MARK: - ExerciseView
+
+// 1 - delete !
+
+extension WorkoutView {
+    var exerciseInfo: some View {
+        VStack {
+            crossButton
+            setTimer
+            ScrollView {
+                setList
+            }
+            .frame(height: ConstantSize.scrollViewHeight)
+            addSetButton
+            Spacer()
+        }
+    }
+    
+    var crossButton: some View {
+        HStack {
+            Button {
+                viewModel.stopSetTimer()
+                withAnimation(.easeInOut(duration: 0.1)) {
+                    secondRecScreenOpacity = false
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        listScreenShowing = true
+                    }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                    firstScreenOpacity = true
+                    withAnimation {
+                        firstRecScreenOpacity = true
+                    }
+                }
+                currentExerciseIndex = nil
+                selectedExerciseIndex = -1
+            } label: {
+                Image(systemName: "xmark.circle")
+                    .foregroundStyle(yellowColor)
+                    .font(.system(size: 30))
+                    .padding(.leading, 16)
+            }
+            Spacer()
+        }
+    }
+    
+    var setTimer: some View {
+        RoundedRectangle(cornerRadius: 100)
+            .frame(width: 155, height: 60)
+            .foregroundStyle(yellowColor.opacity(0.1))
+            .overlay {
+                Text(viewModel.setTimeString)
+                    .foregroundStyle(yellowColor)
+            }
+    }
+    
+    var setList: some View {
+        ForEach(Array(viewModel.workoutModel.exersises[currentExerciseIndex!].sets.enumerated()), id: \.element.index) { index, set in
+            HStack {
+                HStack(spacing: 20) {
+                    ZStack {
+                        Circle()
+                            .frame(width: 56)
+                            .foregroundStyle(yellowColor)
+                        Circle()
+                            .frame(width: 44)
+                            .foregroundStyle(gray6)
+                        Text("\(index + 1)")
+                            .font(.system(size: 20))
+                            .foregroundStyle(yellowColor)
+                    }
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 100)
+                            .frame(width: 52, height: 42)
+                            .foregroundStyle(gray1.opacity(0.1))
+                        Text("x\(set.repeats)")
+                            .font(.system(size: 16))
+                            .foregroundStyle(yellowColor)
+                    }
+                        .onTapGesture {
+                            selectedSetIndex = index
+                            isPickersSheetPresented.toggle()
+                        }
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 100)
+                            .frame(width: 100, height: 42)
+                            .foregroundStyle(gray1.opacity(0.1))
+                        Text(String(format: "%.1f", set.weight) + " kg")
+                            .font(.system(size: 16))
+                            .foregroundStyle(yellowColor)
+                    }
+                        .onTapGesture {
+                            selectedSetIndex = index
+                            isPickersSheetPresented.toggle()
+                        }
+                }
+                Spacer()
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 36))
+                    .foregroundStyle(set.isDone ? yellowColor : yellowColor.opacity(0.1))
+                    .onTapGesture {
+                        viewModel.startSetTimer()
+                        viewModel.doneSet(viewModel.workoutModel.exersises[currentExerciseIndex!], set)
+                    }
+            }
+            .frame(height: 56)
+            .foregroundStyle(.white)
+            .padding(.horizontal, 32)
+            .sheet(isPresented: $isPickersSheetPresented) {
+                ZStack {
+                    gray6.ignoresSafeArea()
+                    
+                    VStack(spacing: 20) {
+                        
+                        HStack(spacing: 16) {
+                            VStack {
+                                Text("Reps")
+                                    .foregroundColor(yellowColor)
+                                Picker("Reps", selection: $pickerReps) {
+                                    ForEach(0...100, id: \.self) { value in
+                                        Text("\(value)").tag(value)
+                                    }
+                                }
+                                .pickerStyle(.wheel)
+                            }
+                            
+                            Text("x")
+                                .foregroundStyle(yellowColor)
+                                .font(.system(size: 24))
+                            
+                            VStack {
+                                Text("Weight")
+                                    .foregroundColor(yellowColor)
+                                Picker("Weight", selection: $pickerWeight) {
+                                    ForEach(Array(stride(from: 0.0, through: 100.0, by: 0.5)), id: \.self) { value in
+                                        Text("\(value, specifier: "%.1f")").tag(value)
+                                    }
+                                }
+                                .pickerStyle(.wheel)
+                            }
+                            
+                            Text("kg")
+                                .foregroundStyle(yellowColor)
+                                .font(.system(size: 20))
+                        }
+                        
+                        Button("Confirm") {
+                            if let selectedSetIndex {
+                                viewModel.saveSet(
+                                    viewModel.workoutModel.exersises[currentExerciseIndex!],
+                                    selectedSetIndex,
+                                    weight: pickerWeight,
+                                    reps: pickerReps
+                                )
+                            }
+                            isPickersSheetPresented.toggle()
+                        }
+                        .font(.title2)
+                        .foregroundStyle(yellowColor)
+                    }
+                }
+                .tint(yellowColor)
+                .presentationDetents([.medium, .large])
+                .onAppear {
+                    if let selectedSetIndex {
+                        let selectedSet = viewModel
+                            .workoutModel
+                            .exersises[currentExerciseIndex!]
+                            .sets[selectedSetIndex]
+                        
+                        pickerReps = Int(selectedSet.repeats)
+                        pickerWeight = selectedSet.weight
+                    }
+                }
+            }
+        }
+    }
+    
+    var addSetButton: some View {
+        Button {
+            viewModel.addSet(viewModel.workoutModel.exersises[currentExerciseIndex!])
+        } label: {
+            RoundedRectangle(cornerRadius: 30)
+                .frame(height: 46)
+                .foregroundStyle(yellowColor.opacity(0.1))
+                .padding(.horizontal, 16)
+                .overlay {
+                    HStack(spacing: 10) {
+                        Spacer()
+                        Image(systemName: "plus")
+                            .foregroundStyle(yellowColor)
+                            .font(.system(size: 16))
+                        Text("Add set")
+                            .foregroundStyle(yellowColor)
+                            .font(.system(size: 16))
+                        Spacer()
+                    }
+                }
+        }
+        .frame(height: 46)
+    }
+}
+
+// MARK: - ResultView
+
+extension WorkoutView {
     var resultView: some View {
         VStack (alignment: .leading, spacing: 32) {
             StandartHeaderText(headerText: "Good job!")
@@ -99,220 +441,9 @@ struct WorkoutView: View {
             Text(textR)
         }
     }
-    
-    var timerView : some View {
-        Text(viewModel.timeString)
-            .font(.system(size: 64))
-            .bold()
-            .foregroundStyle(yellowColor)
-            .kerning(2)
-    }
-    
-    var exercisesList: some View {
-        ScrollView {
-            ForEach(Array(viewModel.workoutModel.exersises.enumerated()), id: \.element.id) { index, exercise in
-                exerciseRectangle(index: index, exercise: exercise)
-            }
-        }
-        .frame(height: ConstantSize.scrollViewHeight)
-    }
-    
-    func exerciseRectangle(index: Int, exercise: ExerciseModel) -> some View {
-        return ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(selectedExerciseIndex == index ? yellowColor : gray2, lineWidth: 1)
-                .fill(gray6)
-                .frame(height: selectedExerciseIndex == index ? ConstantSize.standartExerciseHeight + (ConstantSize.standartAdditionalHeight * CGFloat((2 + exercise.sets.count))) : ConstantSize.standartExerciseHeight)
-            if selectedExerciseIndex != index {
-                HStack {
-                    Text("\(index + 1). \(exercise.exercise.name)")
-                        .foregroundStyle(.white)
-                    Spacer()
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(yellowColor)
-                }
-                .padding(.horizontal, 16)
-            } else {
-                VStack(spacing: 0) {
-                    CustomRoundedRectangle(cornerRadius: 11)
-                        .frame(height: ConstantSize.standartExerciseHeight)
-                        .foregroundStyle(gray2)
-                        .padding(.horizontal, 1)
-                        .padding(.top, 0.5)
-                        .overlay {
-                            HStack {
-                                Text("\(index + 1). \(exercise.exercise.name)")
-                                    .foregroundStyle(.white)
-                                Spacer()
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundStyle(yellowColor)
-                            }
-                            .padding(.horizontal, 16)
-                        }
-                    
-                    VStack(spacing: 0) {
-                        setTopExplanation
-                        setList(exercise: exercise, set: exercise.sets)
-                        addSetButton(exercise: exercise)
-                    }
-                }
-            }
-        }
-        .onTapGesture {
-            if selectedExerciseIndex != index {
-                selectedExerciseIndex = index
-            } else {
-                selectedExerciseIndex = -1
-            }
-        }
-        .animation(.easeInOut(duration: 0.3), value: selectedExerciseIndex)
-        .padding(.horizontal, 1)
-        .padding(.top, 1)
-    }
-    
-    var setTopExplanation: some View {
-        HStack {
-            Text("Set")
-                .font(.system(size: 14))
-            Spacer()
-            Text("Kg")
-                .font(.system(size: 14))
-            Spacer()
-            Text("Reps")
-                .font(.system(size: 14))
-            Spacer()
-            Image(systemName: "checkmark")
-                .font(.system(size: 10))
-        }
-        .frame(height: 26)
-        .foregroundStyle(.white)
-        .padding(.horizontal, 32)
-    }
-    
-    func setList(exercise: ExerciseModel,set: [SetModel]) -> some View {
-        return ForEach(Array(set.enumerated()), id: \.element.index) { index, set in
-            HStack {
-                Text("\(index + 1).")
-                    .font(.system(size: 14))
-                Spacer()
-                Text("\(set.weight)")
-                    .font(.system(size: 14))
-                    .onTapGesture {
-                        isWeightPickerPresented.toggle()
-                    }
-                Spacer()
-                Text("\(set.repeats)")
-                    .font(.system(size: 14))
-                    .onTapGesture {
-                        isRepsPickerPresented.toggle()
-                    }
-                Spacer()
-                Image(systemName: "checkmark.square.fill")
-                    .font(.system(size: 10))
-                    .foregroundStyle(set.isDone ? yellowColor : .white)
-                    .onTapGesture {
-                        viewModel.doneSet(exercise, set)
-                    }
-            }
-            .frame(height: 26)
-            .foregroundStyle(.white)
-            .padding(.horizontal, 32)
-            .sheet(isPresented: $isWeightPickerPresented) {
-                VStack {
-                    Picker("Weight", selection: $pickerWeight) {
-                        ForEach(Array(stride(from: 0.0, through: 100.0, by: 0.5)), id: \.self) { value in
-                            Text("\(value, specifier: "%.1f")").tag(value)
-                        }
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    Button("Confirm") {
-                        viewModel.saveSet(exercise, set, weight: pickerWeight, reps: nil)
-                        isWeightPickerPresented.toggle()
-                    }
-                }
-                .onAppear {
-                    pickerWeight = set.weight
-                }
-            }
-            .sheet(isPresented: $isRepsPickerPresented) {
-                VStack {
-                    Picker("Reps", selection: $pickerReps) {
-                        ForEach(0...100, id: \.self) { value in
-                            Text("\(value)").tag(value)
-                        }
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    Button("Confirm") {
-                        viewModel.saveSet(exercise, set, weight: nil, reps: pickerReps)
-                        isRepsPickerPresented.toggle()
-                    }
-                }
-                .onAppear {
-                    pickerReps = Int(set.repeats)
-                }
-            }
-        }
-    }
-    
-    func addSetButton(exercise: ExerciseModel) -> some View {
-        return Button {
-            viewModel.addSet(exercise)
-        } label: {
-            RoundedRectangle(cornerRadius: 5)
-                .frame(width: 120, height: 22)
-                .foregroundStyle(gray2)
-                .overlay {
-                    HStack(spacing: 4) {
-                        Spacer()
-                        Image(systemName: "plus")
-                            .foregroundStyle(.white)
-                            .font(.system(size: 12))
-                        Text("Add set")
-                            .foregroundStyle(.white)
-                            .font(.system(size: 14))
-                        Spacer()
-                    }
-                }
-        }
-        .frame(height: 26)
-    }
-
-    
-    var plusButton : some View {
-        Circle()
-            .foregroundStyle(yellowColor)
-            .frame(height: ConstantSize.circleSize)
-            .overlay {
-                Image(systemName: "plus")
-                    .foregroundStyle(.black)
-                    .font(.system(size: 24))
-            }
-            .onTapGesture {
-                viewModel.plusButtonTapped()
-            }
-    }
-    
-    var endTrainingButton : some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .foregroundStyle(yellowColor)
-                .frame(height: ConstantSize.endTrainingHeight)
-            RoundedRectangle(cornerRadius: 20)
-                .foregroundStyle(systemDarkBlueColor)
-                .frame(height: ConstantSize.endTrainingHeight - 4)
-                .padding(2)
-            Text("End workout")
-                .foregroundStyle(.white)
-                .font(.system(size: 24))
-                .fontWeight(.bold)
-        }
-        .opacity(viewModel.timeString == "00:00" ? 0 : 1)
-        .animation(.easeInOut(duration: 0.3), value: viewModel.timeString == "00:00")
-        .onTapGesture {
-            viewModel.endWorkoutButtonTapped()
-        }
-    }
 }
+
+// MARK: - Preview
 
 #Preview {
     WorkoutView()
