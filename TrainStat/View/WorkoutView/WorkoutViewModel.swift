@@ -37,6 +37,16 @@ class WorkoutViewModel: ObservableObject {
         return Int64(result)
     }
     
+    func workoutIntensivityResult() -> Int64 {
+        var result = 0.0
+        workoutModel.exersises.forEach {exercise in
+            exercise.sets.forEach {set in
+                result += set.weight * Double(set.repeats)
+            }
+        }
+        return Int64(result)
+    }
+  
     func endWorkoutButtonTapped() {
         workoutModel.time = "\(timeString)"
         stopTimer()
