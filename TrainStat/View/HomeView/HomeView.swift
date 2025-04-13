@@ -178,7 +178,6 @@ struct ExerciseTapeSection: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            // Горизонтальный скролл с категориями:
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
                     ForEach(categoriesTraining, id: \.self) { category in
