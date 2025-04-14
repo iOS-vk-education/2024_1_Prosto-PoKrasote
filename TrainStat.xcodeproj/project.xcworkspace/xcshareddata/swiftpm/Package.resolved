@@ -1,4 +1,9 @@
 {
+<<<<<<< HEAD
+  "originHash" : "4fa034e453faafc0169cb98ce1b88bc4e38f64f1cc0a176127db6dd00618e302",
+  "pins" : [
+    {
+=======
   "originHash" : "266e7d65a42c4752a1742f586997b524e1c2286200ba42d745f5cc2fd781e002",
   "pins" : [
     {
@@ -20,6 +25,7 @@
       }
     },
     {
+>>>>>>> origin/main
       "identity" : "chartview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AppPear/ChartView",
@@ -27,6 +33,8 @@
         "revision" : "9115a992c91fa19cbb4f2241084240d38654a1fc",
         "version" : "1.5.5"
       }
+<<<<<<< HEAD
+=======
     },
     {
       "identity" : "firebase-ios-sdk",
@@ -135,6 +143,7 @@
         "revision" : "ebc7251dd5b37f627c93698e4374084d98409633",
         "version" : "1.28.2"
       }
+>>>>>>> origin/main
     }
   ],
   "version" : 3

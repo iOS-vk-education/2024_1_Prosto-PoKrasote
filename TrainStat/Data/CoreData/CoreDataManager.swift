@@ -129,7 +129,7 @@ class CoreDataManager {
         }
         
         workout.addToExercises(NSOrderedSet(array: exerciseEntities))
-        
+
         do {
             try save()
             print("Successfully created workout with exercises and sets!")

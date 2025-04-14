@@ -86,3 +86,13 @@ var gray3: Color = Color(uiColor: UIColor(hex: "525252"))
 var gray4: Color = Color(uiColor: UIColor(hex: "383838"))
 var gray5: Color = Color(uiColor: UIColor(hex: "1A1A1A"))
 var gray6: Color = Color(uiColor: UIColor(hex: "212121"))
+var green1: Color = Color(uiColor: UIColor(hex: "235347"))
+var green2: Color = Color(uiColor: UIColor(hex: "163832"))
+var green3: Color = Color(uiColor: UIColor(hex: "051F20"))
+var white1: Color = Color(uiColor: UIColor(hex: "DAF1DE"))
+var gradient1 = RadialGradient(
+    gradient: Gradient(colors: [.white, green2, green3, green3, green2, .white]),
+    center: .topTrailing,
+    startRadius: 5,
+    endRadius: 1100
+)
