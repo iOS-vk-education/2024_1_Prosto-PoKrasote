@@ -177,7 +177,7 @@ struct ExerciseTapeSection: View {
     ]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {git pull origin maingit pull origin main
+        VStack(alignment: .leading, spacing: 8) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
                     ForEach(categoriesTraining, id: \.self) { category in
