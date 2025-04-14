@@ -17,4 +17,11 @@ struct SetModel {
         self.repeats = 0
         self.isDone = false
     }
+    
+    init(index: Int16, weight: Double, repeats: Int16) {
+        self.index = index
+        self.weight = weight
+        self.repeats = repeats
+        self.isDone = false
+    }
 }

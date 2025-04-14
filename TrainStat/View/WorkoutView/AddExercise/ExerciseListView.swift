@@ -20,30 +20,45 @@ struct ExerciseListView: View {
     }
     
     var body: some View {
-        VStack {
-            ForEach(exercises, id: \.name) { exercise in
-                Button {
-                    viewModel.addExercise(exercise)
-                    viewModel.dismissSheet()
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(height: 60)
-                            .foregroundStyle(systemDarkBlueColor)
-                        HStack {
-                            Text(exercise.name)
-                            Spacer()
-                            Image(systemName: "chevron.right")
+        ZStack {
+            Color(.black).ignoresSafeArea()
+            VStack {
+                ForEach(exercises, id: \.name) { exercise in
+                    Button {
+                        viewModel.addExercise(exercise)
+                        viewModel.checkTimer()
+                        viewModel.dismissSheet()
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(height: 60)
+                                .foregroundStyle(systemDarkBlueColor)
+                            HStack {
+                                Text(exercise.name)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                            .foregroundStyle(.white)
+                            .padding(.leading, 8)
+                            .padding(.trailing, 16)
                         }
-                        .foregroundStyle(.white)
-                        .padding(.leading, 8)
-                        .padding(.trailing, 16)
                     }
                 }
+                Spacer()
             }
-            Spacer()
+            .padding(.horizontal, 32)
         }
-        .padding(.horizontal, 32)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    router.navigateBack()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(yellowColor)
+                }
+            }
+        }
     }
 }
 
