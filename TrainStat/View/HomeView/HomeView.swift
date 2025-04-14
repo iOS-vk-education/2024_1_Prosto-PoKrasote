@@ -10,24 +10,7 @@ struct Training {
 
 //HOME VIEW
 struct HomeView: View {
-   @State private var forSheet: Bool = false
-    @State private var selectedDates: Set<Date> = []
-    @State private var selectedMonth = Calendar.current.component(.month, from: Date())
-    @State private var selectedYear = Calendar.current.component(.year, from: Date())
-    
-    private var calendar: Calendar = {
-        var cal = Calendar.autoupdatingCurrent
-        cal.firstWeekday = 2
-        cal.locale = Locale.autoupdatingCurrent
-        cal.timeZone = TimeZone.autoupdatingCurrent
-        return cal
-    }()
-    
-    private let availableYears = Array(2020...2030)
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: Constant.elementSpacing), count: 7)
-    private var months: [String] {
-        calendar.monthSymbols
-    }
+    @State private var showingSettings: Bool = false
     
     var body: some View {
         ZStack {
@@ -249,94 +232,12 @@ struct ExerciseTapeSection: View {
                         }
                     }
                     .padding(.vertical, 8)
-                    .padding(Constant.overlayPadding)
-                )
-        }
-    }
-    private var monthYearPicker: some View {
-        HStack {
-            Text("Trainings in")
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-            
-            Spacer()
-            
-            HStack(spacing: 10) {
-                Picker("Select Month", selection: $selectedMonth) {
-                    ForEach(1...12, id: \.self) { month in
-                        Text(months[month - 1]).tag(month)
-                    }
-                }
-                .pickerStyle(.menu)
-                .frame(width: 125, height: 30)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(systemDarkBlueColor)
-                )
-                .accentColor(yellowColor)
-                
-                Picker("Select Year", selection: $selectedYear) {
-                    ForEach(availableYears, id: \.self) { year in
-                        Text(String(year)).tag(year)
-                    }
-                }
-                .pickerStyle(.menu)
-                .frame(width: 85, height: 30)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(systemDarkBlueColor)
-                )
-                .accentColor(.white)
-            }
-        }
-    }
-    private func calendarDayView(day: Int) -> some View {
-        let isSelected = isDaySelected(day)
-        return ZStack {
-            Circle()
-                .stroke(style: StrokeStyle(lineWidth: 2, dash: isToday(day) ? [8, 8] : []))
-                .frame(width: Constant.bigCircleSize, height: Constant.bigCircleSize)
-                .foregroundColor(yellowColor)
-            Circle()
-                .frame(width: Constant.smallCircleSize, height: Constant.smallCircleSize)
-                .foregroundColor(isSelected ? yellowColor : .black)
-            
-            Text("\(day)")
-                .foregroundColor(isSelected ? .black : .white)
-                .fontWeight(.bold)
-        }
-    }
-
-    private var buttonsSection: some View {
-        VStack(spacing: Constant.elementSpacing) {
-            Button(action: {
-                print("Start exercise tapped")
-            }) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: Constant.cornerRadius)
-                        .frame(height: Constant.startExerciseButtonHeight)
-                        .foregroundColor(yellowColor)
-                    Text("Start exercise")
-                        .fontWeight(.bold)
-                        .font(.system(size: Constant.buttonFontSize))
-                        .foregroundColor(.black)
-                }
-            }
-            
-            Button(action: { forSheet = true }) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: Constant.cornerRadius)
-                        .frame(height: Constant.recentTrainingsButtonHeight)
-                        .foregroundColor(systemDarkBlueColor)
-                    Text("Recent Trainings")
-                        .fontWeight(.bold)
-                        .font(.system(size: Constant.buttonFontSize))
-                        .foregroundColor(.white)
                 }
             }
         }
     }
 }
+
 
 //CALENDAR
 
