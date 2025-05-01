@@ -8,93 +8,106 @@ struct Training {
     let intensity: Int
 }
 
+enum PeriodYourSection : String {
+    case day = "Day"
+    case week = "Week"
+    case month = "Month"
+}
+
 //HOME VIEW
 struct HomeView: View {
     @State private var showingSettings: Bool = false
-    
     var body: some View {
-        ZStack {
-            gradient1.ignoresSafeArea()
-            
-            VStack(spacing: 16) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Welcome back,")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                        Text("Max Verstappen")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                    }
-                    Spacer()
-                    Button(action: {
-                        showingSettings.toggle()
-                    }) {
-                        Image(systemName: "gearshape.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24, height: 24)
-                            .foregroundColor(.white)
-                    }
-                    .sheet(isPresented: $showingSettings) {
-                        Text("Settings screen")
-                            .font(.title)
-                    }
-                }
-                .padding(.top, 40)
-                .padding(.horizontal, 24)
-                CalendarSection()
-                    .padding(.horizontal, 24)
-                ZStack(alignment: .topLeading) {
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(green1)
-                        .frame(height: 200)
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Training for you")
-                            .font(.title3)
-                            .fontWeight(.medium)
-                            .foregroundColor(.white)
-                        Text("Arm day")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(white1)
-                                .frame(width: 80, height: 32)
-                            Text("Medium")
-                                .foregroundColor(green2)
-                                .fontWeight(.medium)
-                        }
-                        .padding(.top, 50)
-                    }
-                    .padding(.leading, 16)
-                    .padding(.top, 16)
+        NavigationView {
+            ZStack {
+                gradient1.ignoresSafeArea()
+                VStack(spacing: 16) {
                     HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Welcome back,")
+                                .font(.title3)
+                                .foregroundColor(.white)
+                            Text("Max Verstappen")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                        }
                         Spacer()
-                        Rectangle()
-                            .fill(Color.gray)
-                            .frame(width: 100, height: 120)
-                            .cornerRadius(12)
-                            .padding(.trailing, 16)
-                            .padding(.top, 32)
+                        Button(action: {
+                            showingSettings.toggle()
+                        }) {
+                            Image(systemName: "gearshape.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(.white)
+                        }
+                        .sheet(isPresented: $showingSettings) {
+                            Text("Settings screen")
+                                .font(.title)
+                        }
                     }
+                    .padding(.top, 40)
+                    .padding(.horizontal, 24)
+                    CalendarSection()
+                        .padding(.horizontal, 24)
+                    TrainingDaySection()
+                        .padding(.horizontal, 24)
+                    ExerciseTapeSection()
+                        .padding(.top, 12)
+                        .padding(.horizontal, 24)
+                    YourProgressSection()
+                        .padding(.top, 5)
+                        .padding(.horizontal, 24)
+                    Spacer()
                 }
-                .padding(.horizontal, 24)
-                ExerciseTapeSection()
-                    .padding(.top, 12)
-                    .padding(.horizontal, 24)
-                yourProgressSection
-                    .padding(.top, 5)
-                    .padding(.horizontal, 24)
-                Spacer()
             }
         }
     }
-    private var yourProgressSection: some View {
+}
+
+struct TrainingDaySection: View {
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(green1)
+                .frame(height: 200)
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Training for you")
+                    .font(.title3)
+                    .fontWeight(.medium)
+                    .foregroundColor(.white)
+                Text("Arm day")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(white1)
+                        .frame(width: 80, height: 32)
+                    Text("Medium")
+                        .foregroundColor(green2)
+                        .fontWeight(.medium)
+                }
+                .padding(.top, 50)
+            }
+            .padding(.leading, 16)
+            .padding(.top, 16)
+            HStack {
+                Spacer()
+                Image("photo1")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200)
+            }
+        }
+    }
+}
+
+struct YourProgressSection: View {
+    var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(green1)
@@ -109,16 +122,15 @@ struct HomeView: View {
                         .foregroundColor(.white)
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                    
-                    Button(action: {
-                    }) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color.white)
-                                .frame(width: 80, height: 32)
-                            Text("Watch")
-                                .foregroundColor(green2)
-                        }
+                    NavigationLink(destination: StatisticsView()) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(Color.white)
+                                    .frame(width: 80, height: 32)
+                                Text("Watch")
+                                    .foregroundColor(green2)
+                            }
+                
                     }
                 }
                 
@@ -138,7 +150,7 @@ struct HomeView: View {
             .padding()
         }
     }
-
+    
 }
 
 //TAPE EXERCIZE
@@ -254,19 +266,25 @@ struct CalendarSection: View {
     }
     
     var body: some View {
-        ScrollViewReader { scrollViewProxy in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(datesGenerate(from: calendarState, daysInPast: 30, daysInFuture: 100), id: \.self) { date in
-                        dayItem(date).id(date)
+            ScrollViewReader { scrollViewProxy in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        ForEach(datesGenerate(from: calendarState,
+                                              daysInPast: 30,
+                                              daysInFuture: 100),
+                                id: \.self) { date in
+                            dayItem(date)
+                                .padding(.vertical, 8)
+                        }
                     }
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 24)
+                }
+                .onAppear {
+                    scrollViewProxy.scrollTo(calendarState, anchor: .leading)
                 }
             }
-            .onAppear {
-                scrollViewProxy.scrollTo(calendarState, anchor: .leading)
-            }
         }
-    }
 }
 
 extension CalendarSection {
@@ -337,3 +355,4 @@ struct HomeView_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
     }
 }
+
