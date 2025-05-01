@@ -1,10 +1,3 @@
-//
-//  AccountView.swift
-//  TrainStat
-//
-//  Created by Kovalev Gleb on 12.11.2024.
-//
-
 import SwiftUI
 import FirebaseAuth
 
@@ -60,12 +53,10 @@ struct AccountView: View {
             .padding()
         case .signedOut:
             VStack(alignment: .leading, spacing: 10) {
-                Text("Welcome to TrainStat!")
+                Text("Settings")
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(.yellow)
-                Text("Please sign in or create an account to continue.")
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
             }
             .padding()
         }
@@ -106,35 +97,30 @@ struct AccountView: View {
     @ViewBuilder
     private var settingsSections: some View {
         VStack(alignment: .leading, spacing: 20) {
-            SectionHeader(title: "Security")
             VStack(spacing: 20) {
                 NavigationLink(destination: Text("OK")) {
-                    SettingsRow(icon: "lock", title: "Change Password")
+                    SettingsRow(icon: "person", title: "Edit profile")
                 }
                 NavigationLink(destination: Text("What?")) {
-                    SettingsRow(icon: "lock.open", title: "Forgot Password")
+                    SettingsRow(icon: "lock", title: "Change password")
                 }
                 NavigationLink(destination: Text("Super secure security")) {
-                    SettingsRow(icon: "shield", title: "Security")
+                    SettingsRow(icon: "bell", title: "Notifications")
                 }
             }
             .padding(.horizontal)
-
-            SectionHeader(title: "General")
             VStack(spacing: 20) {
                 NavigationLink(destination: Text("A片")) {
-                    SettingsRow(icon: "globe", title: "Language")
+                    SettingsRow(icon: "doc.text", title: "Language")
                 }
                 NavigationLink(destination: Text("Cache has been cleared (no)")) {
-                    SettingsRow(icon: "trash", title: "Clear Cache", info: "88 MB")
+                    SettingsRow(icon: "info.circle", title: "Clear Cache", info: "88 MB")
                 }
             }
             .padding(.horizontal)
-
-            SectionHeader(title: "About")
             VStack(spacing: 20) {
                 NavigationLink(destination: Text("Privacy Policies")) {
-                    SettingsRow(icon: "shield.lefthalf.fill", title: "Legal and Policies")
+                    SettingsRow(icon: "rectangle.portrait.and.arrow.right", title: "Legal and Policies")
                 }
                 NavigationLink(destination: Text("Help yourself")) {
                     SettingsRow(icon: "questionmark.circle", title: "Help & Support")
@@ -249,3 +235,4 @@ struct AccountView: View {
     AccountView()
         .environmentObject(AuthManager())
 }
+

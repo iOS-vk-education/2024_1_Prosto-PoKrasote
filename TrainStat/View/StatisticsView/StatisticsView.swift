@@ -1,83 +1,102 @@
-//
-//  StatisticsView.swift
-//  TrainStat
-//
-//  Created by Kovalev Gleb on 12.11.2024.
-//
-
 import SwiftUI
+
+struct StatisticCard: View {
+    let title: String
+    let value: String
+    let delta: String
+    let deltaColor: Color
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color.white.opacity(0.1))
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Text(title)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Spacer()
+                    Image(systemName: "calendar")
+                        .foregroundColor(.white)
+                }
+                Spacer()
+                HStack(alignment: .bottom, spacing: 4) {
+                    Text(value)
+                        .font(.system(size: 35, weight: .regular))
+                        .foregroundColor(.white)
+                    Text(delta)
+                        .font(.caption)
+                        .foregroundColor(deltaColor)
+                        .padding(.bottom, 8)
+                }
+            }
+            .padding(16)
+        }
+        .frame(width: 140, height: 140)
+    }
+}
 
 struct StatisticsView: View {
     @EnvironmentObject var router: StatisticsRouter
-    
+    private let arraySectionTime = ["Day", "Month", "Year"]
+    @State private var sectionSelected = 0
+
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
-            
-            VStack(spacing: 48) {
-                StandartHeaderText(headerText: "Statistics")
-                    .padding(.horizontal, 24)
-                StatisticsBigButton(header: "Achivments") {
-                    router.navigateTo(.achievementView)
+            gradient1.ignoresSafeArea()
+            VStack(alignment: .leading, spacing: 16) {
+                Text("Progress")
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.white.opacity(0.1))
+                        .frame(height: 32)
+                    HStack(spacing: 0) {
+                        ForEach(arraySectionTime.indices, id: \.self) { idx in
+                            Text(arraySectionTime[idx])
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .foregroundColor(idx == sectionSelected ? .black : .white)
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    sectionSelected = idx
+                                }
+                                .background(
+                                    Group {
+                                        if idx == sectionSelected {
+                                            RoundedRectangle(cornerRadius: 5)
+                                                .fill(Color.white)
+                                                .padding(3)
+                                        }
+                                    }
+                                )
+                        }
+                    }
+                    .frame(height: 32)
+                    
                 }
-                StatisticsBigButton(header: "General statistics") {
-                    router.navigateTo(.generalStatisticsView)
-                }
-                StatisticsBigButton(header: "Exercise statistics") {
-                    router.navigateTo(.exerciseStatisticsView)
-                }
-                
+
+                Rectangle()
+                    .frame(height: 254)
+                    .foregroundColor(.white.opacity(0.3))
+                HStack(spacing: 32) {
+                    StatisticCard(title: "Workouts", value: "20", delta: "+2", deltaColor: .white)
+                       StatisticCard(title: "Workouts", value: "20", delta: "+2", deltaColor: .white)
+                                }
+                .frame(maxWidth: .infinity, alignment: .center)
+
                 Spacer()
             }
+            .padding(.top, 20)
+            .padding(.horizontal, 35)
         }
     }
-    
 }
 
-struct StatisticsBigButton: View {
-    @State var header: String
-    
-    let action: () -> Void
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 30)
-                .foregroundStyle(systemDarkBlueColor)
-            VStack {
-                HStack {
-                    Spacer()
-                    Circle()
-                        .trim(from: 0.25, to: 0.5)
-                        .stroke(yellowColor, lineWidth: 10)
-                        .frame(width: 125, height: 125)
-                        .blur(radius: 4)
-                        .offset(x: 62.5, y: -62.5)
-                }
-                Spacer()
-            }
-            HStack(spacing: 16) {
-                Text(header)
-                    .font(.system(size: 28))
-                    .fontWeight(.bold)
-                    .padding(.leading, 20)
-                Image(systemName: "circle.fill")
-                    .font(.system(size: 50))
-                Spacer()
-            }
-            .foregroundStyle(yellowColor)
-                
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 30))
-        .frame(height: 160)
-        .padding(.horizontal, 32)
-        .onTapGesture {
-            action()
-        }
-    }
-}
 
 
 
 #Preview {
     StatisticsView()
 }
+
